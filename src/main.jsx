@@ -4,9 +4,13 @@ import "./index.css";
 import App from "./App.jsx";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { ContextApi } from "./Component/ContextApi.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
+   <ContextApi>
     <App />
+    
+   </ContextApi>
   </StrictMode>
 );

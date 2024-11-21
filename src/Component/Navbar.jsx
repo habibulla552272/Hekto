@@ -26,7 +26,7 @@ const Navbar = () => {
             <div
               className={`md:static md:flex md:bg-white ${
                 menuBar
-                  ? "absolute w-60 text-center top-0 -left-3  bg-slate-950 opacity-80  duration-700"
+                  ? "absolute w-60 text-center top-0 -left-3  bg-slate-950 opacity-100  duration-700"
                   : "absolute top-0 -left-16"
               }`}
             >

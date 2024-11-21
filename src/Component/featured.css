@@ -1,0 +1,20 @@
+
+.slick-dots li{
+    background-color: rgba(254,186,215,1);
+    width: 50px !important;
+    border-radius: 5px !important;
+   
+    padding: 7px !important;
+    
+}
+.slick-dots  button::before{
+    color: white !important;
+    width: 100% !important;
+   
+}
+.slick-dots li.slick-active{
+    background-color: rgba(251,46,134,1) !important;
+}
+.slick-dots li.slick-active button::before{
+    color: transparent !important;
+}

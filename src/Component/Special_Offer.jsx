@@ -1,44 +1,34 @@
-import React, { useContext } from 'react'
-import { apiData } from './ContextApi';
+import React, { useContext } from "react";
+import { apiData } from "./ContextApi";
 import { Link } from "react-router-dom";
-import Products from './../Pages/Products';
+import Products from "./../Pages/Products";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaSearchDollar } from "react-icons/fa";
 import { CiHeart } from "react-icons/ci";
 
-const Leatest_Products = () => {
+const Special_Offer = () => {
+  let info = useContext(apiData);
 
-    let info =useContext(apiData)
+  let filteritem = info.filter((item) => {
+    return item.category === "laptops";
+  });
+  filteritem.map((item, index) => {
+    item.No = index + 1;
+  });
 
-   let filteritem= info.filter((item)=>{
-
-        return item.category === "laptops"
-
-    })
-     filteritem.map((item,index)=>{
-     
-      
-       
-       item.No= index+1;
-
-       
-    
-  })
-
-
-  let lastFilter = filteritem.filter((item)=>{
+  let lastFilter = filteritem.filter((item) => {
     return item.NO > 1 && item.No <= 5;
-  })
+  });
 
   return (
     <section>
       <div className="container mx-auto">
         <h2 className="text-3xl text-center py-3">Latest Products</h2>
         <div className="flex gap-10 justify-center py-5">
-          <Link to='/new_arrival'>New Arrival</Link>
+          <Link to="/new_arrival">New Arrival</Link>
           <Link to="/best_seller">Best Seller</Link>
           <Link >Featured</Link>
-          <Link to='/special_offer'>Special Offer</Link>
+          <Link to="/special_offer">Special Offer</Link>
         </div>
         <div className="flex   md:justify-between overflow-hidden flex-wrap">
           {filteritem.map((item) => (
@@ -70,6 +60,6 @@ const Leatest_Products = () => {
       </div>
     </section>
   );
-}
+};
 
-export default Leatest_Products
+export default Special_Offer;

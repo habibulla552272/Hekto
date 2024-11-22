@@ -64,7 +64,7 @@ const Navbar = () => {
             onClick={() => StatemenuBar(false)}
             className="flex border-2 rounded-md justify-between"
           >
-            <input className="outline-none px-5 w-full h-fit" type="search" />
+            <input className="outline-none px-5 py-1 w-full h-fit" type="search" />
             <p className="bg-buttom-bg px-2 py-2">
               <FcSearch />
             </p>

@@ -4,6 +4,7 @@ import Featured from '../Component/Featured';
 import Leatest_Products from '../Component/Leatest_Products';
 import What_Shopex from '../Component/What_Shopex ';
 import Unique_Features from '../Component/Unique_Features';
+import Top_Categories from '../Component/Top_Categories';
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
     <Leatest_Products />
     <What_Shopex />
     <Unique_Features />
+    <Top_Categories />
     </>
   );
 }

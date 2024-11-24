@@ -29,7 +29,7 @@ const Leatest_Products = () => {
         <h2 className="text-3xl text-center py-3">Latest Products</h2>
         <div className="flex gap-10 justify-center py-5">
           <Tabs>
-            <TabList className="flex justify-center gap-10  ">
+            <TabList className="flex flex-col md:flex-row items-center justify-center gap-3  md:gap-10 px-2 md:px-0">
               <Tab>New_Arrival</Tab>
               <Tab>Best Seller</Tab>
               <Tab>Featured</Tab>

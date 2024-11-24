@@ -10,7 +10,7 @@ const Discount_Item = () => {
           Discount Item
         </h2>
         <Tabs>
-          <TabList className="flex justify-center gap-5">
+          <TabList className="flex flex-col md:flex-row items-center justify-center gap-5 px-2 md:px-0">
             <Tab>Wood Chair</Tab>
             <Tab>Plastic Chair</Tab>
             <Tab>Sofa Colletion</Tab>

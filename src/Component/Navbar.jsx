@@ -27,7 +27,7 @@ const Navbar = () => {
               className={`md:static md:flex md:bg-white ${
                 menuBar
                   ? "absolute w-60 text-center top-0 -left-3  bg-slate-950 opacity-100  duration-700"
-                  : "absolute top-0 -left-16"
+                  : "absolute top-0 -left-52"
               }`}
             >
               <ul className="flex flex-col gap-5 justify-center items-center py-5 md:flex-row md:gap-10 md:py-0">

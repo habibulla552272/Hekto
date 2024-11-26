@@ -71,8 +71,8 @@ const Featured = () => {
         <h2 className="text-center text-3xl font-lato">Featured Products</h2>
 
         <Slider {...settings}>
-          {filteritem.map((item) => (
-            <div className="group !w-[97%]  shadow-1xl">
+          {filteritem.map((item,index) => (
+            <div key={index} className="group !w-[97%]  shadow-1xl">
               <div className="flex  flex-col items-center relative overflow-hidden bg-gray-100 rounded-md">
                 <div className="flex gap-2 text-2xl absolute group-hover:left-5 top-2 -left-28 duration-700 ease-in-out">
                   <p>

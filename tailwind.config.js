@@ -24,6 +24,10 @@ export default {
       colors: {
         search: "rbga(251,46,134,1)",
       },
+      backgroundImage: {
+        "Subscribe_bg":
+          "url('/Hekto_Project/src/assets/Rectangle 102.png')",
+      },
     },
   },
   plugins: [],

@@ -26,21 +26,33 @@ useEffect(() => {
 
 
   //    filter category item
-  const handleCategory = (listItem) => {
-    let filteritem = data.filter((item) => item.category === listItem);
-    setcategoryData(filteritem);
+  const handleCategory = (listItem, type) => {
+    if (type === "category") {
+      let filteritem = data.filter((item) => item.category === listItem);
+      setcategoryData(filteritem);
+    }
+    else if (type === "brand") {
+      let filteritem = data.filter((item) => item.brand === listItem);
+      setcategoryData(filteritem);
+    }
   };
-
   
+
 
 
   return (
     <section>
+      
       <div className="md:flex md:justify-between px-5">
         <div className="px-3 md:w-[25%]">
           <div className="border-2 ">
             <h2
-              onClick={() => setcategoryShow(!categoryShow)}
+              onClick={() => {
+
+                setcategoryShow(!categoryShow);
+                setBrandShow(false)
+
+              }}
               className="flex items-center px-5 py-2 border-2 bg-gray-100 text-xl font-lato font-extrabold justify-between"
             >
               Category {categoryShow ? <IoIosArrowUp /> : <IoIosArrowDown />}
@@ -54,7 +66,7 @@ useEffect(() => {
                 return (
                   <li
                     key={index}
-                    onClick={() => handleCategory(item)}
+                    onClick={() => handleCategory(item,'category')}
                     className="border-2 px-2 py-2 my-2 cursor-pointer"
                   >
                     {item}
@@ -65,7 +77,10 @@ useEffect(() => {
           </div>
           <div className="brand border-2 ">
             <h2
-              onClick={() => setBrandShow(!BrandShow)}
+              onClick={() => {
+                setBrandShow(!BrandShow);
+                setcategoryShow(false)
+              }}
               className="flex items-center px-5 py-2 border-2 bg-gray-100 text-xl font-lato font-extrabold justify-between"
             >
               Brand {BrandShow ? <IoIosArrowUp /> : <IoIosArrowDown />}
@@ -79,7 +94,7 @@ useEffect(() => {
                 return (
                   <li
                     key={index}
-                    onClick={() => handleCategory(item)}
+                    onClick={() => handleCategory(item,'brand')}
                     className="border-2 px-2 py-2 my-2 cursor-pointer"
                   >
                     {item}
@@ -130,6 +145,7 @@ useEffect(() => {
                     </div>
                   </div>
                 ))}
+              
           </div>
         </div>
       </div>

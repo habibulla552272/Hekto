@@ -1,10 +1,15 @@
 import React from "react";
+import BlogHero from "../Component/Blogpage/BlogHero";
 
 const Blog = () => {
   return (
-    <div className="bg-hero-bg">
-      <h3 className="text-center py-10">Blog</h3>
-    </div>
+    <section>
+
+      <div className="container mx-auto">
+        <BlogHero />
+
+      </div>
+    </section>
   );
 };
 

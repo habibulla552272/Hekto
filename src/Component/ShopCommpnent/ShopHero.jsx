@@ -1,6 +1,7 @@
 import React from 'react'
 import CommonHero from '../CommonHero'
 
+
 const ShopHero = () => {
   return (
     <>

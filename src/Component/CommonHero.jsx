@@ -1,5 +1,6 @@
 import React from "react";
 
+
 const CommonHero = (props) => {
   return (
     <section className="bg-[#F6F5FF] py-24 px-10 md:px-0">

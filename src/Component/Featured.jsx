@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 const Featured = () => {
   const info = useContext(apiData);
   let filteritem= info.filter((item)=>{
-    console.log(item.category);
+   
     
      return item.category === 'laptops'
   })

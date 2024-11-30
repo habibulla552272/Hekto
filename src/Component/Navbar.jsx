@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Hekto from "../assets/Hekto (1).png";
 import { Link } from "react-router-dom";
 import { FaChevronDown } from "react-icons/fa6";
@@ -6,12 +6,22 @@ import { FcSearch } from "react-icons/fc";
 import { IoMenu } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
 
-import Pages from "../Pages/Pages";
-import Products from "../Pages/Products";
-import Blog from "../Pages/Blog";
+import { apiData } from "./ContextApi";
 
 const Navbar = () => {
+  let data = useContext(apiData);
+
   const [menuBar, StatemenuBar] = useState(false);
+  const [Search, setSearch] = useState(" ");
+  const [searchClick, setSearchClick] = useState(false);
+  console.log(Search);
+  let filterData = data.filter((item) => {
+   
+      return item.title.toLowerCase().includes(Search.toLowerCase());
+   
+  });
+  console.log(filterData);
+
   const menuShow = () => {
     StatemenuBar(!menuBar);
   };
@@ -49,7 +59,7 @@ const Navbar = () => {
                   <Link to="/shop">Shop</Link>
                 </li>
                 <li>
-                  <Link to='/contact'>Contact</Link>
+                  <Link to="/contact">Contact</Link>
                 </li>
               </ul>
             </div>
@@ -64,11 +74,37 @@ const Navbar = () => {
             onClick={() => StatemenuBar(false)}
             className="flex border-2 rounded-md justify-between"
           >
-            <input className="outline-none px-5 py-1 w-full h-fit" type="search" />
-            <p className="bg-buttom-bg px-2 py-2">
+            <input
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
+              className="outline-none px-5 py-1 w-full h-fit"
+              type="search"
+            />
+            <p
+              onClick={() => setSearchClick(true)}
+              className="bg-buttom-bg px-2 py-2"
+            >
               <FcSearch />
             </p>
           </div>
+        </div>
+
+        <div className={`   ${searchClick ? "visible" : " hidden"} `}>
+          {Search === " "
+            ? " "
+            : filterData.map((item, index) => {
+                return (
+                  <div
+                    className="flex justify-between items-center px-3 bg-gray-100"
+                    key={index}
+                  >
+                    <img className="w-32" src={item.thumbnail} alt="" />
+                    <p>{item.title}</p>
+                    <p>{item.price}</p>
+                  </div>
+                );
+              })}
         </div>
       </div>
     </section>

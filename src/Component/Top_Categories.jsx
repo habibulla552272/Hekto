@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import testcard from "../assets/image 1168.png";
 import Slider from "react-slick";
 import { apiData } from "./ContextApi";
+import { Link } from "react-router-dom";
 
 const Top_Categories = () => {
   const info = useContext(apiData);
@@ -75,7 +76,7 @@ const Top_Categories = () => {
                     <img src={item.thumbnail} alt="" />
                     <div className="absolute -bottom-32 group-hover:bottom-2 duration-700 ease-in-out">
                       <button className="px-6 py-1 bg-buttom-bg rounded-md">
-                        Details
+                        <Link to="/productdetails">View Details</Link>
                       </button>
                     </div>
                     {/* <div className='absolute w-full h-full -left-20 top-20 rotate-180    rounded-full bg-blue-600'></div> */}

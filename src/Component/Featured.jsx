@@ -8,6 +8,7 @@ import { FaSearchDollar } from "react-icons/fa";
 import { CiHeart } from "react-icons/ci";
 import Slider from "react-slick";
 import Products from './../Pages/Products';
+import { Link } from "react-router-dom";
 
 
 const Featured = () => {
@@ -71,7 +72,7 @@ const Featured = () => {
         <h2 className="text-center text-3xl font-lato">Featured Products</h2>
 
         <Slider {...settings}>
-          {filteritem.map((item,index) => (
+          {filteritem.map((item, index) => (
             <div key={index} className="group !w-[97%]  shadow-1xl">
               <div className="flex  flex-col items-center relative overflow-hidden bg-gray-100 rounded-md">
                 <div className="flex gap-2 text-2xl absolute group-hover:left-5 top-2 -left-28 duration-700 ease-in-out">
@@ -88,12 +89,14 @@ const Featured = () => {
                 <img className="py-10" src={item.thumbnail} alt="" />
                 <div className="absolute group-hover:bottom-2 -bottom-14 duration-700  ease-in-out">
                   <button className="bg-green-400 px-3  py-1 rounded-md">
-                    View Details
+                    <Link to="/productdetails">View Details</Link>
                   </button>
                 </div>
               </div>
               <div className="text-center  group-hover:bg-blue-500 text-black group-hover:text-white">
-                <h2 className="flex justify-center items-center  h-10">{item.title}</h2>
+                <h2 className="flex justify-center items-center  h-10">
+                  {item.title}
+                </h2>
                 <div className="flex gap-1 py-2 justify-center">
                   <span className="bg-green-200  w-5 h-1"></span>
                   <span className=" bg-buttom-bg w-5 h-1"></span>

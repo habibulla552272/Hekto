@@ -1,0 +1,10 @@
+
+.react-tabs__tab--selected{
+    
+    color: orange;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid red;
+    padding-bottom: 3px;
+}

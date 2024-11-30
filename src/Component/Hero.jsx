@@ -2,6 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import Sofa from "../assets/sofa promotional header.png";
 import Image32 from "../assets/image 32.png";
+import { Link } from "react-router-dom";
 const Hero = () => {
   const settings = {
     dots: true,
@@ -32,7 +33,7 @@ const Hero = () => {
                     Voluptas quaerat eos itaque fugit.
                   </p>
                   <button className="bg-buttom-bg px-4 py-2 rounded-sm">
-                    Shop Now
+                    <Link to="/shop">Shop Now</Link>
                   </button>
                 </div>
               </div>

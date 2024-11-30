@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { CiMail } from "react-icons/ci";
 import { FaPhone } from "react-icons/fa6";
 import { FaChevronDown } from "react-icons/fa6";
@@ -61,7 +62,9 @@ const Header = () => {
             </div>
             <div className="flex items-center">
               <p className="text-2xl">
-                <FaShoppingCart />
+                <Link to="/productdetails">
+                  <FaShoppingCart />
+                </Link>
               </p>
             </div>
           </div>

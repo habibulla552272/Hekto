@@ -9,6 +9,9 @@ import Shop from './Pages/Shop';
 import Best_Seller from './Component/Best_Seller';
 import New_Arrival from './Component/New_Arrival';
 import Special_Offer from './Component/Special_Offer';
+import Contact from './Pages/Contact';
+import ProductDetails from './Pages/ProductDetails';
+
 
 function App() {
   let myRouter = createBrowserRouter(
@@ -18,6 +21,9 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/shop" element={<Shop />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/productdetails" element={<ProductDetails />} />
+
         <Route path="/best_seller" element={<Best_Seller />} />
         <Route path="/new_arrival" element={<New_Arrival />} />
         <Route path="/special_offer" element={<Special_Offer />} />

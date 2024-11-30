@@ -16,15 +16,15 @@ const RelatedProducts = () => {
   return (
     <section>
       <div className="container mx-auto py-20">
-        <h2 className='text-2xl font-serif py-5'>Related Products</h2>
+        <h2 className="text-2xl font-serif py-5">Related Products</h2>
         <div className="flex flex-wrap justify-between">
-          <div className=" mx-auto md:w-[23%]">
+          <div className=" mx-auto md:w-[23%] shadow-md py-2">
             <div className="bg-gray-100">
               <img src={Rectangle128} alt="" />
             </div>
-            <div className="flex justify-between">
-              <h2>Mens Fashion Wear</h2>
-              <div className="flex gap-2">
+            <div className="flex justify-between items-center">
+              <h2 className="text-sm">Mens Fashion Wear</h2>
+              <div className="flex text-orange-400 py-2 px-1">
                 <FaStar />
                 <FaStar />
                 <FaStar />
@@ -35,13 +35,13 @@ const RelatedProducts = () => {
             </div>
             <p>$41.00</p>
           </div>
-          <div className="mx-auto md:w-[23%]">
+          <div className="mx-auto md:w-[23%] shadow-md py-2">
             <div className="bg-gray-100">
               <img src={Rectangle130} alt="" />
             </div>
-            <div className="flex justify-between">
-              <h2>Mens Fashion Wear</h2>
-              <div className="flex gap-2">
+            <div className="flex justify-between items-center">
+              <h2 className="text-sm">Mens Fashion Wear</h2>
+              <div className="flex text-orange-400 py-2 px-1">
                 <FaStar />
                 <FaStar />
                 <FaStar />
@@ -52,13 +52,13 @@ const RelatedProducts = () => {
             </div>
             <p>$41.00</p>
           </div>
-          <div className="mx-auto md:w-[23%]">
+          <div className="mx-auto md:w-[23%] shadow-md py-2">
             <div className="bg-gray-100">
               <img src={Rectangle131} alt="" />
             </div>
-            <div className="flex justify-between">
-              <h2>Mens Fashion Wear</h2>
-              <div className="flex gap-2">
+            <div className="flex justify-between items-center">
+              <h2 className="text-sm">Mens Fashion Wear</h2>
+              <div className="flex text-orange-400 py-2 px-1">
                 <FaStar />
                 <FaStar />
                 <FaStar />
@@ -69,13 +69,13 @@ const RelatedProducts = () => {
             </div>
             <p>$41.00</p>
           </div>
-          <div className="mx-auto md:w-[23%]">
+          <div className="mx-auto md:w-[23%] shadow-md py-2">
             <div className="bg-gray-100">
               <img src={Rectangle132} alt="" />
             </div>
-            <div className="flex justify-between">
-              <h2>Mens Fashion Wear</h2>
-              <div className="flex gap-2">
+            <div className="flex justify-between items-center">
+              <h2 className="text-sm">Mens Fashion Wear</h2>
+              <div className="flex text-orange-400 py-2 px-1">
                 <FaStar />
                 <FaStar />
                 <FaStar />

@@ -62,7 +62,7 @@ const Header = () => {
             </div>
             <div className="flex items-center">
               <p className="text-2xl">
-                <Link to="/productdetails">
+                <Link to="/curt">
                   <FaShoppingCart />
                 </Link>
               </p>

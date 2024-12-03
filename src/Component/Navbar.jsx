@@ -93,9 +93,9 @@ const Navbar = () => {
           </div>
         </div>
 
-        <div className="px-4 md:absolute md:w-96 right-24 top-24  h-96 overflow-y-scroll z-40">
+        <div className="">
           {searchFilerProducts.length > 0 && (
-            <div>
+            <div className="px-4 md:absolute md:w-96 right-24 top-24  h-96 overflow-y-scroll z-40">
               {searchFilerProducts.map((item, index) => (
                 <div
                   key={index}

@@ -8,50 +8,52 @@ const ShopAll_Item = () => {
   const data = useContext(apiData);
   let [category, setcategory] = useState([]);
   let [categoryShow, setcategoryShow] = useState(false);
-  let [BrandShow,setBrandShow]=useState(false)
+  let [BrandShow, setBrandShow] = useState(false);
+  let [priceShow,setPriceShow] =useState(false)
   let [categoryData, setcategoryData] = useState([]);
-  let [Brand,setBrand]=useState([]);
+  let [Brand, setBrand] = useState([]);
 
   // filter category unique value useing set method
   useEffect(() => {
     setcategory([...new Set(data.map((item) => item.category))]);
   }, [data]);
   // filter Brand unique value useing set method
-useEffect(() => {
-  setBrand([...new Set(data.map((item) => item.brand))]);
-}, [data]);
-
-
-
-
+  useEffect(() => {
+    setBrand([...new Set(data.map((item) => item.brand))]);
+  }, [data]);
 
   //    filter category item
   const handleCategory = (listItem, type) => {
     if (type === "category") {
+      
       let filteritem = data.filter((item) => item.category === listItem);
       setcategoryData(filteritem);
-    }
-    else if (type === "brand") {
+    } else if (type === "brand") {
+     
       let filteritem = data.filter((item) => item.brand === listItem);
       setcategoryData(filteritem);
     }
   };
-  
+  const handlePrice = (low, high) => {
+    
+   
 
-
+    let filteritem = data.filter(
+      (item) => item.price > low && item.price <= high
+    );
+    setcategoryData(filteritem);
+  };
 
   return (
     <section>
-      
       <div className="md:flex md:justify-between px-5">
         <div className="px-3 md:w-[25%]">
           <div className="border-2 ">
             <h2
               onClick={() => {
-
                 setcategoryShow(!categoryShow);
-                setBrandShow(false)
-
+                setBrandShow(false);
+                setPriceShow(false)
               }}
               className="flex items-center px-5 py-2 border-2 bg-gray-100 text-xl font-lato font-extrabold justify-between"
             >
@@ -66,7 +68,7 @@ useEffect(() => {
                 return (
                   <li
                     key={index}
-                    onClick={() => handleCategory(item,'category')}
+                    onClick={() => handleCategory(item, "category")}
                     className="border-2 px-2 py-2 my-2 cursor-pointer"
                   >
                     {item}
@@ -79,7 +81,8 @@ useEffect(() => {
             <h2
               onClick={() => {
                 setBrandShow(!BrandShow);
-                setcategoryShow(false)
+                setcategoryShow(false);
+                setPriceShow(false)
               }}
               className="flex items-center px-5 py-2 border-2 bg-gray-100 text-xl font-lato font-extrabold justify-between"
             >
@@ -94,13 +97,113 @@ useEffect(() => {
                 return (
                   <li
                     key={index}
-                    onClick={() => handleCategory(item,'brand')}
+                    onClick={() => handleCategory(item, "brand")}
                     className="border-2 px-2 py-2 my-2 cursor-pointer"
                   >
                     {item}
                   </li>
                 );
               })}
+            </ul>
+          </div>
+          <div className="brand border-2 ">
+            <h2
+              onClick={() => {
+                setPriceShow(!priceShow);
+                setcategoryShow(false);
+                setBrandShow(false)
+              }}
+              className="flex items-center px-5 py-2 border-2 bg-gray-100 text-xl font-lato font-extrabold justify-between"
+            >
+              Price {BrandShow ? <IoIosArrowUp /> : <IoIosArrowDown />}
+            </h2>
+            <ul
+              className={`px-5 h-36 overflow-y-scroll ${
+                priceShow ? " " : "hidden"
+              }`}
+            >
+              <div
+                onClick={() => {
+                  handlePrice(0, 50);
+                }}
+                className="flex justify-between bg-gray-100 px-2 rounded-md py-1 my-2"
+              >
+                <li>$0</li>
+                <li>$50</li>
+              </div>
+              <div
+                onClick={() => {
+                  handlePrice(51, 100);
+                }}
+                className="flex justify-between bg-gray-100 px-2 rounded-md py-1 my-2"
+              >
+                <li>$51</li>
+                <li>$100</li>
+              </div>
+              <div
+                onClick={() => {
+                  handlePrice(101, 150);
+                }}
+                className="flex justify-between bg-gray-100 px-2 rounded-md py-1  my-2"
+              >
+                <li>$101</li>
+                <li>$150</li>
+              </div>
+              <div
+                onClick={() => {
+                  handlePrice(151, 200);
+                }}
+                className="flex justify-between bg-gray-100 px-2 rounded-md py-1 my-2"
+              >
+                <li>$151</li>
+                <li>$200</li>
+              </div>
+              <div
+                onClick={() => {
+                  handlePrice(201, 250);
+                }}
+                className="flex justify-between bg-gray-100 px-2 rounded-md py-1 my-2"
+              >
+                <li>$201</li>
+                <li>$250</li>
+              </div>
+              <div
+                onClick={() => {
+                  handlePrice(251, 300);
+                }}
+                className="flex justify-between bg-gray-100 px-2 rounded-md py-1 my-2"
+              >
+                <li>$251</li>
+                <li>$300</li>
+              </div>
+              <div
+                onClick={() => {
+                  handlePrice(301, 400);
+                }}
+                className="flex justify-between bg-gray-100 px-2 rounded-md py-1 my-2"
+              >
+                <li>$301</li>
+                <li>$400</li>
+              </div>
+              <div
+                onClick={() => {
+                  handlePrice(401, 500);
+                }}
+                className="flex justify-between bg-gray-100 px-2 rounded-md py-1 my-2"
+              >
+                <li>$401</li>
+                <li>$500</li>
+              </div>
+
+              <div
+                onClick={() => {
+                  handlePrice(501, 100000);
+                }}
+                className="flex justify-between bg-gray-100 px-2 rounded-md py-1 my-2"
+              >
+                <li>$501</li>
+                <li>$1000</li>
+              </div>
             </ul>
           </div>
         </div>
@@ -145,7 +248,6 @@ useEffect(() => {
                     </div>
                   </div>
                 ))}
-              
           </div>
         </div>
       </div>

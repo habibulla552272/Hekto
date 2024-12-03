@@ -257,14 +257,14 @@ const ShopAll_Item = () => {
                     </div>
                   ))}
                 </div>
-                <div className="flex gap-4 justify-center items-center ">
-                  <button className="h-8 bg-buttom-bg px-1 flex items-center rounded-md mb-2" onClick={handelPrivius}>Previus</button>
+                <div className="flex flex-col  md:flex-row gap-4 justify-center items-center ">
+                  <button className="w-16 h-8 bg-buttom-bg px-1 flex justify-center items-center rounded-md mb-2" onClick={handelPrivius}>Previus</button>
                   <ul className="flex w-56 md:w-96 overflow-x-scroll">
                     {numbers.map((item) => {
                       return <li className={`border-2 rounded-md p-2 cursor-pointer ${currentPage == item ? 'bg-orange-400 text-white': ' ' }`} onClick={()=>setCurrentPage(item)}>{item}</li>;
                     })}
                   </ul>
-                  <button className=" h-8 bg-buttom-bg px-2 py-1 flex items-center rounded-md mb-2" onClick={handelNext}>Next</button>
+                  <button className="w-16 h-8 bg-buttom-bg px-2 py-1 flex items-center justify-center rounded-md mb-2" onClick={handelNext}>Next</button>
                 </div>
               </div>
             ) : (

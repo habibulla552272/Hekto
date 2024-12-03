@@ -12,15 +12,21 @@ const Navbar = () => {
   let data = useContext(apiData);
 
   const [menuBar, StatemenuBar] = useState(false);
-  const [Search, setSearch] = useState(" ");
-  const [searchClick, setSearchClick] = useState(false);
-  console.log(Search);
-  let filterData = data.filter((item) => {
-   
-      return item.title.toLowerCase().includes(Search.toLowerCase());
-   
-  });
-  console.log(filterData);
+
+  // const [searchClick, setSearchClick] = useState(false);
+  const [searchFilerProducts, setSearchFilerProducts] = useState([]);
+
+  const searchHandeler = (e) => {
+    if (e.target.value !== "") {
+      let searchdata = data.filter((item) =>
+        item.title.toLowerCase().includes(e.target.value.toLowerCase())
+      );
+
+      setSearchFilerProducts(searchdata);
+    } else {
+      setSearchFilerProducts([]);
+    }
+  };
 
   const menuShow = () => {
     StatemenuBar(!menuBar);
@@ -31,7 +37,9 @@ const Navbar = () => {
         <div className="md:flex md:justify-between py-4 px-5 ">
           <div className="flex justify-between gap-10 relative text-white md:text-black">
             <div>
-              <img src={Hekto} alt="" />
+              <Link to="/">
+                <img src={Hekto} alt="" />
+              </Link>
             </div>
             <div
               className={`md:static md:flex md:bg-white ${
@@ -75,36 +83,31 @@ const Navbar = () => {
             className="flex border-2 rounded-md justify-between"
           >
             <input
-              onChange={(e) => {
-                setSearch(e.target.value);
-              }}
+              onChange={searchHandeler}
               className="outline-none px-5 py-1 w-full h-fit"
               type="search"
             />
-            <p
-              onClick={() => setSearchClick(true)}
-              className="bg-buttom-bg px-2 py-2"
-            >
+            <p className="bg-buttom-bg px-2 py-2">
               <FcSearch />
             </p>
           </div>
         </div>
 
-        <div className={`   ${searchClick ? "visible" : " hidden"} `}>
-          {Search === " "
-            ? " "
-            : filterData.map((item, index) => {
-                return (
-                  <div
-                    className="flex justify-between items-center px-3 bg-gray-100"
-                    key={index}
-                  >
-                    <img className="w-32" src={item.thumbnail} alt="" />
-                    <p>{item.title}</p>
-                    <p>{item.price}</p>
-                  </div>
-                );
-              })}
+        <div className="px-4 md:absolute md:w-96 right-24 top-24  h-96 overflow-y-scroll z-40">
+          {searchFilerProducts.length > 0 && (
+            <div>
+              {searchFilerProducts.map((item, index) => (
+                <div
+                  key={index}
+                  className="flex justify-between items-center  border-2 my-3 bg-gray-200"
+                >
+                  <img className="w-1/3 bg-white" src={item.thumbnail} alt="" />
+                  <h2 className="text-sm w-5/12 px-3">{item.title}</h2>
+                  <p className="pr-4 w-1/4">{item.price}</p>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>

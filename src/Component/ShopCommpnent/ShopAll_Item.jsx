@@ -9,7 +9,7 @@ const ShopAll_Item = () => {
   let [category, setcategory] = useState([]);
   let [categoryShow, setcategoryShow] = useState(false);
   let [BrandShow, setBrandShow] = useState(false);
-  let [priceShow,setPriceShow] =useState(false)
+  let [priceShow, setPriceShow] = useState(false);
   let [categoryData, setcategoryData] = useState([]);
   let [Brand, setBrand] = useState([]);
 
@@ -22,38 +22,63 @@ const ShopAll_Item = () => {
     setBrand([...new Set(data.map((item) => item.brand))]);
   }, [data]);
 
-  //    filter category item
+  //    filter category item start
   const handleCategory = (listItem, type) => {
     if (type === "category") {
-      
       let filteritem = data.filter((item) => item.category === listItem);
       setcategoryData(filteritem);
     } else if (type === "brand") {
-     
       let filteritem = data.filter((item) => item.brand === listItem);
       setcategoryData(filteritem);
     }
   };
   const handlePrice = (low, high) => {
-    
-   
-
     let filteritem = data.filter(
       (item) => item.price > low && item.price <= high
     );
     setcategoryData(filteritem);
   };
 
+  //    filter category item End
+
+  // pagination  start
+  let [currentPage, setCurrentPage] = useState(1);
+  let [perPage, setPerPage] = useState(15);
+  let lastItemIndex = currentPage * perPage;
+  let firstItemIndex = lastItemIndex - perPage;
+
+  let pageNumber = Math.ceil(data.length / perPage);
+  let numbers = useState([]);
+
+  for (let i = 1; i <= pageNumber; i++) {
+    numbers.push(i);
+  }
+
+  let perPageProduct = data.slice(firstItemIndex, lastItemIndex);
+
+  const handelPrivius = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+  const handelNext = () => {
+    if (currentPage !== pageNumber) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  //pagination End
+
   return (
     <section>
-      <div className="md:flex md:justify-between px-5">
-        <div className="px-3 md:w-[25%]">
+      <div className="md:flex md:justify-between px-5 ">
+        <div className="px-3 md:w-[25%] py-5 md:py-0">
           <div className="border-2 ">
             <h2
               onClick={() => {
                 setcategoryShow(!categoryShow);
                 setBrandShow(false);
-                setPriceShow(false)
+                setPriceShow(false);
               }}
               className="flex items-center px-5 py-2 border-2 bg-gray-100 text-xl font-lato font-extrabold justify-between"
             >
@@ -82,7 +107,7 @@ const ShopAll_Item = () => {
               onClick={() => {
                 setBrandShow(!BrandShow);
                 setcategoryShow(false);
-                setPriceShow(false)
+                setPriceShow(false);
               }}
               className="flex items-center px-5 py-2 border-2 bg-gray-100 text-xl font-lato font-extrabold justify-between"
             >
@@ -111,7 +136,7 @@ const ShopAll_Item = () => {
               onClick={() => {
                 setPriceShow(!priceShow);
                 setcategoryShow(false);
-                setBrandShow(false)
+                setBrandShow(false);
               }}
               className="flex items-center px-5 py-2 border-2 bg-gray-100 text-xl font-lato font-extrabold justify-between"
             >
@@ -209,45 +234,60 @@ const ShopAll_Item = () => {
         </div>
         <div className="md:w-[70%]">
           <div className="flex  justify-between flex-wrap ">
-            {categoryData == 0
-              ? data.map((item, index) => (
-                  <div
-                    key={index}
-                    className=" mx-auto pb-12 md:w-[40%] lg:w-[30%]"
-                  >
-                    <div className="flex justify-center items-center bg-gray-100">
-                      <img src={item.thumbnail} alt="" />
-                    </div>
-                    <div className="text-center">
-                      <h2>{item.title}</h2>
-                      <div className="flex gap-2">
-                        <span className="w-2 h-2 rounded-full text-orange-400 "></span>
-                        <span className="w-2 h-2 rounded-full text-blue-400 "></span>
-                        <span className="w-2 h-2 rounded-full text-red-400 "></span>
+            {categoryData == 0 ? (
+              <div>
+                <div className="flex  justify-between flex-wrap">
+                  {perPageProduct.map((item, index) => (
+                    <div
+                      key={index}
+                      className=" mx-auto pb-12 md:w-[40%] lg:w-[30%]"
+                    >
+                      <div className="flex justify-center items-center bg-gray-100">
+                        <img src={item.thumbnail} alt="" />
                       </div>
-                      <p>{item.price}</p>
-                    </div>
-                  </div>
-                ))
-              : categoryData.map((item, index) => (
-                  <div
-                    key={index}
-                    className=" mx-auto pb-12 md:w-[40%] lg:w-[30%]"
-                  >
-                    <div className="flex justify-center items-center bg-gray-100">
-                      <img src={item.thumbnail} alt="" />
-                    </div>
-                    <div className="text-center">
-                      <h2>{item.title}</h2>
-                      <div className="flex gap-2">
-                        <span className="w-2 h-2 rounded-full text-orange-400 "></span>
-                        <span className="w-2 h-2 rounded-full text-blue-400 "></span>
-                        <span className="w-2 h-2 rounded-full text-red-400 "></span>
+                      <div className="text-center">
+                        <h2>{item.title}</h2>
+                        <div className="flex gap-2">
+                          <span className="w-2 h-2 rounded-full text-orange-400 "></span>
+                          <span className="w-2 h-2 rounded-full text-blue-400 "></span>
+                          <span className="w-2 h-2 rounded-full text-red-400 "></span>
+                        </div>
+                        <p>{item.price}</p>
                       </div>
-                      <p>{item.price}</p>
                     </div>
+                  ))}
+                </div>
+                <div className="flex gap-4 justify-center items-center ">
+                  <button className="h-8 bg-buttom-bg px-1 flex items-center rounded-md mb-2" onClick={handelPrivius}>Previus</button>
+                  <ul className="flex w-56 md:w-96 overflow-x-scroll">
+                    {numbers.map((item) => {
+                      return <li className={`border-2 rounded-md p-2 cursor-pointer ${currentPage == item ? 'bg-orange-400 text-white': ' ' }`} onClick={()=>setCurrentPage(item)}>{item}</li>;
+                    })}
+                  </ul>
+                  <button className=" h-8 bg-buttom-bg px-2 py-1 flex items-center rounded-md mb-2" onClick={handelNext}>Next</button>
+                </div>
+              </div>
+            ) : (
+              categoryData.map((item, index) => (
+                <div
+                  key={index}
+                  className=" mx-auto pb-12 md:w-[40%] lg:w-[30%]"
+                >
+                  <div className="flex justify-center items-center bg-gray-100">
+                    <img src={item.thumbnail} alt="" />
                   </div>
-                ))}
+                  <div className="text-center">
+                    <h2>{item.title}</h2>
+                    <div className="flex gap-2">
+                      <span className="w-2 h-2 rounded-full text-orange-400 "></span>
+                      <span className="w-2 h-2 rounded-full text-blue-400 "></span>
+                      <span className="w-2 h-2 rounded-full text-red-400 "></span>
+                    </div>
+                    <p>{item.price}</p>
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         </div>
       </div>

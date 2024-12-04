@@ -14,6 +14,7 @@ import Special_Offer from './Component/Special_Offer';
 import Contact from './Pages/Contact';
 import ProductDetails from './Pages/ProductDetails';
 import ShoppingCurt from './Component/Card/ShoppingCurt';
+import NotFound_Page from './Component/NotFound_Page';
 
 
 function App() {
@@ -26,12 +27,14 @@ function App() {
         <Route path="/shop" element={<Shop />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/curt" element={<ShoppingCurt />} />
-
         <Route path="/productdetails" element={<ProductDetails />} />
-
         <Route path="/best_seller" element={<Best_Seller />} />
         <Route path="/new_arrival" element={<New_Arrival />} />
         <Route path="/special_offer" element={<Special_Offer />} />
+
+
+        <Route path='*' element={<NotFound_Page />} />
+
       </Route>
     )
   );

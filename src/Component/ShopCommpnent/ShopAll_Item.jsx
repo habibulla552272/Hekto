@@ -1,8 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { apiData } from "../ContextApi";
 import { IoIosArrowUp } from "react-icons/io";
-
 import { IoIosArrowDown } from "react-icons/io";
+import { FaShoppingCart } from "react-icons/fa";
+import { FaSearchDollar } from "react-icons/fa";
+import { CiHeart } from "react-icons/ci";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addtoCard } from "../Slice/cardSlice";
 
 const ShopAll_Item = () => {
   const data = useContext(apiData);
@@ -68,6 +73,12 @@ const ShopAll_Item = () => {
   };
 
   //pagination End
+
+  let dispatch = useDispatch();
+  const cardHandel = (item) => {
+    
+    dispatch(addtoCard({ ...item ,Qont:1}));
+  };
 
   return (
     <section>
@@ -240,31 +251,72 @@ const ShopAll_Item = () => {
                   {perPageProduct.map((item, index) => (
                     <div
                       key={index}
-                      className=" mx-auto pb-12 md:w-[40%] lg:w-[30%]"
+                      className="group mx-auto pb-12 md:w-[40%] lg:w-[30%] shadow-1xl rounded-md"
                     >
-                      <div className="flex justify-center items-center bg-gray-100">
-                        <img src={item.thumbnail} alt="" />
+                      <div className="flex justify-center items-center bg-gray-100  relative overflow-hidden">
+                        <div className="flex gap-2 text-2xl absolute group-hover:left-5 top-2 -left-28 duration-700 ease-in-out">
+                          <p onClick={() => cardHandel(item)}>
+                            <FaShoppingCart />
+                          </p>
+                          <p>
+                            <CiHeart />
+                          </p>
+                          <p>
+                            <FaSearchDollar />
+                          </p>
+                        </div>
+                        <img
+                          className="py-2 group-hover:bg-green-200"
+                          src={item.thumbnail}
+                          alt=""
+                        />
+                        <div className="absolute group-hover:bottom-2 -bottom-14 duration-700  ease-in-out">
+                          <button className="bg-green-400 px-3  py-1 rounded-md">
+                            <Link to="/productdetails">View Details</Link>
+                          </button>
+                        </div>
                       </div>
-                      <div className="text-center">
-                        <h2>{item.title}</h2>
-                        <div className="flex gap-2">
+                      <div className="text-center group-hover:bg-gray-200 ">
+                        <h2 className="py-1">{item.title}</h2>
+                        <div className="flex gap-2 py-1">
                           <span className="w-2 h-2 rounded-full text-orange-400 "></span>
                           <span className="w-2 h-2 rounded-full text-blue-400 "></span>
                           <span className="w-2 h-2 rounded-full text-red-400 "></span>
                         </div>
-                        <p>{item.price}</p>
+                        <p>${item.price}</p>
                       </div>
                     </div>
                   ))}
                 </div>
                 <div className="flex flex-col  md:flex-row gap-4 justify-center items-center ">
-                  <button className="w-16 h-8 bg-buttom-bg px-1 flex justify-center items-center rounded-md mb-2" onClick={handelPrivius}>Previus</button>
+                  <button
+                    className="w-16 h-8 bg-buttom-bg px-1 flex justify-center items-center rounded-md mb-2"
+                    onClick={handelPrivius}
+                  >
+                    Previus
+                  </button>
                   <ul className="flex w-56 md:w-96 overflow-x-scroll">
                     {numbers.map((item) => {
-                      return <li className={`border-2 rounded-md p-2 cursor-pointer ${currentPage == item ? 'bg-orange-400 text-white': ' ' }`} onClick={()=>setCurrentPage(item)}>{item}</li>;
+                      return (
+                        <li
+                          className={`border-2 rounded-md p-2 cursor-pointer ${
+                            currentPage == item
+                              ? "bg-orange-400 text-white"
+                              : " "
+                          }`}
+                          onClick={() => setCurrentPage(item)}
+                        >
+                          {item}
+                        </li>
+                      );
                     })}
                   </ul>
-                  <button className="w-16 h-8 bg-buttom-bg px-2 py-1 flex items-center justify-center rounded-md mb-2" onClick={handelNext}>Next</button>
+                  <button
+                    className="w-16 h-8 bg-buttom-bg px-2 py-1 flex items-center justify-center rounded-md mb-2"
+                    onClick={handelNext}
+                  >
+                    Next
+                  </button>
                 </div>
               </div>
             ) : (

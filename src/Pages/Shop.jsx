@@ -8,7 +8,7 @@ const Shop = () => {
    <>
    <ShopHero />
    {/* <Fashion_item /> */}
-   <ShopAll_Item />
+   <ShopAll_Item/>
    </>
   )
 }

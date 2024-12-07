@@ -12,12 +12,12 @@ const Header = () => {
     <section className="bg-heder-bg">
       <div className="container mx-auto text-white ">
         <div className="flex flex-wrap justify-center gap-5 md:justify-between py-2 font-josefin">
-          <div className=" div-1 flex items-center gap-4">
+          <div className="text-sm md:text-lg div-1 flex items-center gap-4">
             <div className="flex items-center gap-2">
               <p className=" flex items-center">
                 <CiMail />
               </p>
-              <p>mhhasanul@gmail.com</p>
+              <p >mhhasanul@gmail.com</p>
             </div>
             <div className="flex items-center gap-2">
               <p className="flex items-center">
@@ -27,7 +27,7 @@ const Header = () => {
             </div>
           </div>
 
-          <div className="flex gap-3">
+          <div className="flex gap-3 text-sm md:text-lg">
             <div>
               <p className="flex items-center">
                 English
@@ -61,7 +61,7 @@ const Header = () => {
               </p>
             </div>
             <div className="flex items-center">
-              <p className="text-2xl">
+              <p className="text-2xl flex ">
                 <Link to="/curt">
                   <FaShoppingCart />
                 </Link>

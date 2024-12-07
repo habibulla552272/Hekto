@@ -21,14 +21,7 @@ const ShopAll_Item = () => {
   let [priceShow, setPriceShow] = useState(false);
   let [categoryData, setcategoryData] = useState([]);
   let [Brand, setBrand] = useState([]);
- let [columItemShow,setcolumitemShow]= useState(false)
-
- let ColumItemShowfunc =()=>{
-   setcolumitemShow(!columItemShow)
-   console.log('hello habib');
-   
- }
-
+  let [columItemShow, setcolumitemShow] = useState(false);
 
   // filter category unique value useing set method
   useEffect(() => {
@@ -88,8 +81,7 @@ const ShopAll_Item = () => {
 
   let dispatch = useDispatch();
   const cardHandel = (item) => {
-    
-    dispatch(addtoCard({ ...item ,Qont:1}));
+    dispatch(addtoCard({ ...item, Qont: 1 }));
   };
 
   return (
@@ -127,7 +119,10 @@ const ShopAll_Item = () => {
             </div>
             <div className="py-5 md:py-0 text-xl md:text-sm  flex items-center gap-4 md:gap-1">
               <label className="pb-1">View:</label>
-              <p className="md:text-2xl">
+              <p
+                onClick={() => setcolumitemShow(!columItemShow)}
+                className="md:text-2xl"
+              >
                 <TfiMenuAlt />
               </p>
               <p className=" text-xl md:text-2xl ">
@@ -309,6 +304,7 @@ const ShopAll_Item = () => {
                 <div>
                   <div className="flex   justify-between flex-wrap">
                     {perPageProduct.map((item, index) => (
+                      
                       <div
                         key={index}
                         className="group mx-auto pb-12 md:w-[40%] lg:w-[30%] shadow-1xl rounded-md"
@@ -380,30 +376,64 @@ const ShopAll_Item = () => {
                   </div>
                 </div>
               ) : (
-                categoryData.map((item, index) => (
-                  <div
-                    key={index}
-                    className=" mx-auto pb-12 md:w-[40%] lg:w-[30%]"
-                  >
-                    <div className="flex justify-center items-center bg-gray-100">
-                      <img src={item.thumbnail} alt="" />
-                    </div>
-                    <div className="text-center">
-                      <h2>{item.title}</h2>
-                      <div className="flex gap-2">
-                        <span className="w-2 h-2 rounded-full text-orange-400 "></span>
-                        <span className="w-2 h-2 rounded-full text-blue-400 "></span>
-                        <span className="w-2 h-2 rounded-full text-red-400 "></span>
+                categoryData.map((item, index) =>
+                  columItemShow === true ? (
+                    <div key={index} className=" flex">
+                      <img className="w-40" src={item.thumbnail} alt="image" />
+                      <div>
+                        <h2>hey bro how are you</h2>
+                        <div className="py-2">
+                          <p>
+                            ${item.price}
+                            <span className="line-through bg-purple-400">
+                              {" "}
+                              $52.00
+                            </span>
+                          </p>
+                          <div></div>
+                          <p className="text-sm">
+                            Lorem ipsum, dolor sit amet consectetur adipisicing
+                            elit. Dignissimos dolorem cupiditate adipisci,
+                            laboriosam sit architecto!
+                          </p>
+                        </div>
+                        <div className="flex gap-2 text-2xl py-2">
+                          <p onClick={() => cardHandel(item)}>
+                            <FaShoppingCart />
+                          </p>
+                          <p>
+                            <CiHeart />
+                          </p>
+                          <p>
+                            <FaSearchDollar />
+                          </p>
+                        </div>
                       </div>
-                      <p>{item.price}</p>
                     </div>
-                  </div>
-                ))
+                  ) : (
+                    <div
+                      key={index}
+                      className=" mx-auto pb-12 md:w-[40%] lg:w-[30%]"
+                    >
+                      <div className="flex justify-center items-center bg-gray-100">
+                        <img src={item.thumbnail} alt="" />
+                      </div>
+                      <div className="text-center">
+                        <h2>{item.title}</h2>
+                        <div className="flex gap-2">
+                          <span className="w-2 h-2 rounded-full text-orange-400 "></span>
+                          <span className="w-2 h-2 rounded-full text-blue-400 "></span>
+                          <span className="w-2 h-2 rounded-full text-red-400 "></span>
+                        </div>
+                        <p>{item.price}</p>
+                      </div>
+                    </div>
+                  )
+                )
               )}
             </div>
           </div>
         </div>
-        <ColumItemShow />
       </div>
     </section>
   );

@@ -58,7 +58,7 @@ const ShopAll_Item = () => {
   let firstItemIndex = lastItemIndex - perPage;
 
   let pageNumber = Math.ceil(data.length / perPage);
-  let numbers = useState([]);
+  let numbers = [];
 
   for (let i = 1; i <= pageNumber; i++) {
     numbers.push(i);
@@ -79,6 +79,19 @@ const ShopAll_Item = () => {
 
   //pagination End
 
+  
+  // perpage Handel start
+
+  let perpageHandel =(e)=>{
+    if(e.target.value >= 5){
+      setPerPage(e.target.value);
+    }
+    
+  
+  }
+  
+  // perpage Handel End
+  
   let dispatch = useDispatch();
   const cardHandel = (item) => {
     dispatch(addtoCard({ ...item, Qont: 1 }));
@@ -89,6 +102,7 @@ const ShopAll_Item = () => {
       {/* <Fashion_item  /> */}
 
       <div className="container mx-auto">
+        {/* section 1 */}
         <div className="text-center md:flex justify-between py-8">
           <div className="md:w-[45%] text-center md:text-start py-4">
             <h2 className="text-xl md:text-2xl  font-sans font-extrabold">
@@ -102,7 +116,12 @@ const ShopAll_Item = () => {
                 <label className="text-sm " htmlFor="">
                   Per Page:
                 </label>
-                <input className="w-12 h-8 border-2 outline-none" type="text" />
+                <input
+                  onChange={perpageHandel}
+                  defaultValue={15}
+                  className="w-12 h-8 border-2 outline-none"
+                  type="Number"
+                />
               </div>
               <div className="flex items-center gap-1">
                 <label htmlFor="">Sort By:</label>
@@ -137,16 +156,19 @@ const ShopAll_Item = () => {
             </div>
           </div>
         </div>
-        <div className="md:flex md:justify-between px-5 ">
-          <div className="px-3 md:w-[25%] py-5 md:py-0">
-            <div className="border-2 ">
+        {/* section 1  end*/}
+
+        {/* section 2 start */}
+        <div className="md:flex md:justify-between px-5 md:px-0">
+          <div className="px-3 md:px-0 md:w-[25%] py-5 md:py-0 ">
+            <div className="border-2 cursor-pointer hover:bg-green-300 hover:text-white">
               <h2
                 onClick={() => {
                   setcategoryShow(!categoryShow);
                   setBrandShow(false);
                   setPriceShow(false);
                 }}
-                className="flex items-center px-5 py-2 border-2 bg-gray-100 text-xl font-lato font-extrabold justify-between"
+                className="flex items-center px-5 py-2 border-2 bg-gray-100 text-black text-xl font-lato font-extrabold justify-between"
               >
                 Category {categoryShow ? <IoIosArrowUp /> : <IoIosArrowDown />}
               </h2>
@@ -160,7 +182,7 @@ const ShopAll_Item = () => {
                     <li
                       key={index}
                       onClick={() => handleCategory(item, "category")}
-                      className="border-2 px-2 py-2 my-2 cursor-pointer"
+                      className="border-2 px-2 py-2 my-2 cursor-pointer hover:bg-black"
                     >
                       {item}
                     </li>
@@ -168,14 +190,14 @@ const ShopAll_Item = () => {
                 })}
               </ul>
             </div>
-            <div className="brand border-2 ">
+            <div className="brand border-2 cursor-pointer hover:bg-green-300 hover:text-white">
               <h2
                 onClick={() => {
                   setBrandShow(!BrandShow);
                   setcategoryShow(false);
                   setPriceShow(false);
                 }}
-                className="flex items-center px-5 py-2 border-2 bg-gray-100 text-xl font-lato font-extrabold justify-between"
+                className="flex items-center px-5 py-2 border-2 bg-gray-100 text-black text-xl font-lato font-extrabold justify-between"
               >
                 Brand {BrandShow ? <IoIosArrowUp /> : <IoIosArrowDown />}
               </h2>
@@ -189,7 +211,7 @@ const ShopAll_Item = () => {
                     <li
                       key={index}
                       onClick={() => handleCategory(item, "brand")}
-                      className="border-2 px-2 py-2 my-2 cursor-pointer"
+                      className="border-2 px-2 py-2 my-2 cursor-pointer hover:bg-black"
                     >
                       {item}
                     </li>
@@ -197,7 +219,7 @@ const ShopAll_Item = () => {
                 })}
               </ul>
             </div>
-            <div className="brand border-2 ">
+            <div className="brand border-2 cursor-pointer">
               <h2
                 onClick={() => {
                   setPriceShow(!priceShow);
@@ -304,7 +326,6 @@ const ShopAll_Item = () => {
                 <div>
                   <div className="flex   justify-between flex-wrap">
                     {perPageProduct.map((item, index) => (
-                      
                       <div
                         key={index}
                         className="group mx-auto pb-12 md:w-[40%] lg:w-[30%] shadow-1xl rounded-md"
@@ -416,7 +437,27 @@ const ShopAll_Item = () => {
                       className=" mx-auto pb-12 md:w-[40%] lg:w-[30%]"
                     >
                       <div className="flex justify-center items-center bg-gray-100">
-                        <img src={item.thumbnail} alt="" />
+                        <div className="flex gap-2 text-2xl absolute group-hover:left-5 top-2 -left-28 duration-700 ease-in-out">
+                          <p onClick={() => cardHandel(item)}>
+                            <FaShoppingCart />
+                          </p>
+                          <p>
+                            <CiHeart />
+                          </p>
+                          <p>
+                            <FaSearchDollar />
+                          </p>
+                        </div>
+                        <img
+                          className="py-2 group-hover:bg-green-200"
+                          src={item.thumbnail}
+                          alt=""
+                        />
+                        <div className="absolute group-hover:bottom-2 -bottom-14 duration-700  ease-in-out">
+                          <button className="bg-green-400 px-3  py-1 rounded-md">
+                            <Link to="/productdetails">View Details</Link>
+                          </button>
+                        </div>
                       </div>
                       <div className="text-center">
                         <h2>{item.title}</h2>
@@ -434,6 +475,7 @@ const ShopAll_Item = () => {
             </div>
           </div>
         </div>
+        {/* section 2 end */}
       </div>
     </section>
   );

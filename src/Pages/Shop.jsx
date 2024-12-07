@@ -7,11 +7,8 @@ const Shop = () => {
   return (
    <>
    <ShopHero />
-   <Fashion_item />
+   {/* <Fashion_item /> */}
    <ShopAll_Item />
-   
-   
-   
    </>
   )
 }

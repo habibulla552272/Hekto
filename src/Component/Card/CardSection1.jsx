@@ -1,5 +1,5 @@
 import React from 'react'
-import CardImage1 from './CardImage/Rectangle 38 (1).png'
+
 import { useSelector } from 'react-redux';
 
 const CardSection1 = () => {

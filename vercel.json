@@ -1,14 +1,20 @@
 {
   "redirects": [
     {
-      "source": "/old-path", 
-      "destination": "/new-path", 
-      "permanent": true 
+      "source": "/old-path",
+      "destination": "/new-path",
+      "permanent": true
     },
     {
       "source": "/github",
       "destination": "https://github.com/habibulla552272/Hekto",
       "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }

@@ -2,7 +2,7 @@ import React from "react";
 import { TfiMenuAlt } from "react-icons/tfi";
 import { CgMenuGridR } from "react-icons/cg";
 
-const Fashion_item = () => {
+const Fashion_item = (props) => {
   return (
     <section>
       <div className="container mx-auto">
@@ -36,7 +36,7 @@ const Fashion_item = () => {
             </div>
             <div className="py-5 md:py-0 text-xl md:text-sm  flex items-center gap-4 md:gap-1">
               <label className="pb-1">View:</label>
-              <p className="md:text-2xl">
+              <p onClick={props.ColumItemShowfunc} className="md:text-2xl">
                 <TfiMenuAlt />
               </p>
               <p className=" text-xl md:text-2xl ">

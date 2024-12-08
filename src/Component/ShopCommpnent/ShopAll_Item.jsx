@@ -8,8 +8,7 @@ import { CiHeart } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addtoCard } from "../Slice/cardSlice";
-import ColumItemShow from "./ColumItemShow";
-import Fashion_item from "./Fashion_item";
+
 import { TfiMenuAlt } from "react-icons/tfi";
 import { CgMenuGridR } from "react-icons/cg";
 
@@ -65,6 +64,7 @@ const ShopAll_Item = () => {
   }
 
   let perPageProduct = data.slice(firstItemIndex, lastItemIndex);
+console.log(perPageProduct);
 
   const handelPrivius = () => {
     if (currentPage > 1) {
@@ -79,19 +79,16 @@ const ShopAll_Item = () => {
 
   //pagination End
 
-  
   // perpage Handel start
 
-  let perpageHandel =(e)=>{
-    if(e.target.value >= 5){
+  let perpageHandel = (e) => {
+    if (e.target.value >= 5) {
       setPerPage(e.target.value);
     }
-    
-  
-  }
-  
+  };
+
   // perpage Handel End
-  
+
   let dispatch = useDispatch();
   const cardHandel = (item) => {
     dispatch(addtoCard({ ...item, Qont: 1 }));
@@ -138,13 +135,13 @@ const ShopAll_Item = () => {
             </div>
             <div className="py-5 md:py-0 text-xl md:text-sm  flex items-center gap-4 md:gap-1">
               <label className="pb-1">View:</label>
-              <p
-                onClick={() => setcolumitemShow(!columItemShow)}
-                className="md:text-2xl"
-              >
+              <p onClick={() => setcolumitemShow(true)} className="md:text-2xl">
                 <TfiMenuAlt />
               </p>
-              <p className=" text-xl md:text-2xl ">
+              <p
+                onClick={() => setcolumitemShow(false)}
+                className=" text-xl md:text-2xl "
+              >
                 <CgMenuGridR />
               </p>
             </div>
@@ -324,14 +321,30 @@ const ShopAll_Item = () => {
             <div className="flex  justify-between flex-wrap ">
               {categoryData == 0 ? (
                 <div>
-                  <div className="flex   justify-between flex-wrap">
-                    {perPageProduct.map((item, index) => (
+                  {columItemShow === true ? (
+                    perPageProduct.map((item, index) => (
                       <div
                         key={index}
-                        className="group mx-auto pb-12 md:w-[40%] lg:w-[30%] shadow-1xl rounded-md"
+                        className=" flex shadow-md my-5 group bg-gray-100"
                       >
-                        <div className="flex justify-center items-center bg-gray-100  relative overflow-hidden">
-                          <div className="flex gap-2 text-2xl absolute group-hover:left-5 top-2 -left-28 duration-700 ease-in-out">
+                        <img
+                          className="w-40 group-hover:bg-green-200 px-1 py-1 rounded-md"
+                          src={item.thumbnail}
+                          alt="image"
+                        />
+                        <div className="px-2 py-2">
+                          <h2>{item.title}</h2>
+                          <div className="py-2">
+                            <p>
+                              ${item.price}
+                              <span className="line-through px-2 text-orange-400">
+                                ${Math.ceil(item.price + 10)}
+                              </span>
+                            </p>
+                            <div></div>
+                            <p className="text-sm">{item.description}</p>
+                          </div>
+                          <div className="flex gap-2 text-2xl py-2">
                             <p onClick={() => cardHandel(item)}>
                               <FaShoppingCart />
                             </p>
@@ -342,29 +355,54 @@ const ShopAll_Item = () => {
                               <FaSearchDollar />
                             </p>
                           </div>
-                          <img
-                            className="py-2 group-hover:bg-green-200"
-                            src={item.thumbnail}
-                            alt=""
-                          />
-                          <div className="absolute group-hover:bottom-2 -bottom-14 duration-700  ease-in-out">
-                            <button className="bg-green-400 px-3  py-1 rounded-md">
-                              <Link to="/productdetails">View Details</Link>
-                            </button>
-                          </div>
-                        </div>
-                        <div className="text-center group-hover:bg-gray-200 ">
-                          <h2 className="py-1">{item.title}</h2>
-                          <div className="flex gap-2 py-1">
-                            <span className="w-2 h-2 rounded-full text-orange-400 "></span>
-                            <span className="w-2 h-2 rounded-full text-blue-400 "></span>
-                            <span className="w-2 h-2 rounded-full text-red-400 "></span>
-                          </div>
-                          <p>${item.price}</p>
                         </div>
                       </div>
-                    ))}
-                  </div>
+                    ))
+                  ) : (
+                    <div className="flex flex-wrap">
+                      {perPageProduct.map((item, index) => {
+                        return (
+                          <div
+                            key={index}
+                            className="group mx-auto pb-12 md:w-[40%] lg:w-[30%] shadow-1xl rounded-md"
+                          >
+                            <div className="flex justify-center items-center bg-gray-100  relative overflow-hidden">
+                              <div className="flex gap-2 text-2xl absolute group-hover:left-5 top-2 -left-28 duration-700 ease-in-out">
+                                <p onClick={() => cardHandel(item)}>
+                                  <FaShoppingCart />
+                                </p>
+                                <p>
+                                  <CiHeart />
+                                </p>
+                                <p>
+                                  <FaSearchDollar />
+                                </p>
+                              </div>
+                              <img
+                                className="py-2 group-hover:bg-green-200"
+                                src={item.thumbnail}
+                                alt=""
+                              />
+                              <div className="absolute group-hover:bottom-2 -bottom-14 duration-700  ease-in-out">
+                                <button className="bg-green-400 px-3  py-1 rounded-md">
+                                  <Link to="/productdetails">View Details</Link>
+                                </button>
+                              </div>
+                            </div>
+                            <div className="text-center group-hover:bg-gray-200 ">
+                              <h2 className="py-1">{item.title}</h2>
+                              <div className="flex gap-2 py-1">
+                                <span className="w-2 h-2 rounded-full text-orange-400 "></span>
+                                <span className="w-2 h-2 rounded-full text-blue-400 "></span>
+                                <span className="w-2 h-2 rounded-full text-red-400 "></span>
+                              </div>
+                              <p>${item.price}</p>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
                   <div className="flex flex-col  md:flex-row gap-4 justify-center items-center ">
                     <button
                       className="w-16 h-8 bg-buttom-bg px-1 flex justify-center items-center rounded-md mb-2"
@@ -396,47 +434,55 @@ const ShopAll_Item = () => {
                     </button>
                   </div>
                 </div>
-              ) : (
-                categoryData.map((item, index) =>
-                  columItemShow === true ? (
-                    <div key={index} className=" flex">
-                      <img className="w-40" src={item.thumbnail} alt="image" />
-                      <div>
-                        <h2>hey bro how are you</h2>
-                        <div className="py-2">
-                          <p>
-                            ${item.price}
-                            <span className="line-through bg-purple-400">
-                              {" "}
-                              $52.00
-                            </span>
-                          </p>
-                          <div></div>
-                          <p className="text-sm">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing
-                            elit. Dignissimos dolorem cupiditate adipisci,
-                            laboriosam sit architecto!
-                          </p>
-                        </div>
-                        <div className="flex gap-2 text-2xl py-2">
-                          <p onClick={() => cardHandel(item)}>
-                            <FaShoppingCart />
-                          </p>
-                          <p>
-                            <CiHeart />
-                          </p>
-                          <p>
-                            <FaSearchDollar />
-                          </p>
-                        </div>
+              ) : columItemShow === true ? (
+                categoryData.map((item, index) => (
+                  <div
+                    key={index}
+                    className=" flex shadow-md my-5 group bg-gray-100"
+                  >
+                    <img
+                      className="w-40 group-hover:bg-green-200 px-1 py-1 rounded-md"
+                      src={item.thumbnail}
+                      alt="image"
+                    />
+                    <div className="px-2 py-2">
+                      <h2>{item.title}</h2>
+                      <div className="py-2">
+                        <p>
+                          ${item.price}
+                          <span className="line-through text-orange-400 px-2">
+                           ${Math.ceil(item.price +10)}
+                          </span>
+                        </p>
+                        <div></div>
+                        <p className="text-sm">
+                          Lorem ipsum, dolor sit amet consectetur adipisicing
+                          elit. Dignissimos dolorem cupiditate adipisci,
+                          laboriosam sit architecto!
+                        </p>
+                      </div>
+                      <div className="flex gap-2 text-2xl py-2">
+                        <p className="px-2 py-2 rounded-full hover:bg-green-300" onClick={() => cardHandel(item)}>
+                          <FaShoppingCart />
+                        </p>
+                        <p>
+                          <CiHeart />
+                        </p>
+                        <p>
+                          <FaSearchDollar />
+                        </p>
                       </div>
                     </div>
-                  ) : (
+                  </div>
+                ))
+              ) : (
+                categoryData.map((item, index) => {
+                  return (
                     <div
                       key={index}
-                      className=" mx-auto pb-12 md:w-[40%] lg:w-[30%]"
+                      className="group mx-auto pb-12 md:w-[40%] lg:w-[30%] shadow-1xl rounded-md"
                     >
-                      <div className="flex justify-center items-center bg-gray-100">
+                      <div className="flex justify-center items-center bg-gray-100  relative overflow-hidden">
                         <div className="flex gap-2 text-2xl absolute group-hover:left-5 top-2 -left-28 duration-700 ease-in-out">
                           <p onClick={() => cardHandel(item)}>
                             <FaShoppingCart />
@@ -459,18 +505,18 @@ const ShopAll_Item = () => {
                           </button>
                         </div>
                       </div>
-                      <div className="text-center">
-                        <h2>{item.title}</h2>
-                        <div className="flex gap-2">
+                      <div className="text-center group-hover:bg-gray-200 ">
+                        <h2 className="py-1">{item.title}</h2>
+                        <div className="flex gap-2 py-1">
                           <span className="w-2 h-2 rounded-full text-orange-400 "></span>
                           <span className="w-2 h-2 rounded-full text-blue-400 "></span>
                           <span className="w-2 h-2 rounded-full text-red-400 "></span>
                         </div>
-                        <p>{item.price}</p>
+                        <p>${item.price}</p>
                       </div>
                     </div>
-                  )
-                )
+                  );
+                })
               )}
             </div>
           </div>

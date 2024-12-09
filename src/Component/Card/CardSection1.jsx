@@ -1,11 +1,19 @@
-import React from 'react'
+import React from "react";
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
+import { decrement, increment } from "../Slice/cardSlice";
 
 const CardSection1 = () => {
-
-
   let cardData = useSelector((state) => state.cardItemSlice.cartItems);
+
+  let dispatch = useDispatch();
+  let incrementHandel = (item) => {
+    dispatch(increment(item));
+  };
+  let decrementHandel=(item)=>{
+    dispatch(decrement(item));
+  }
+
   return (
     <section>
       <div className="container mx-auto">
@@ -16,7 +24,6 @@ const CardSection1 = () => {
                 <li className="w-2/5 ">Product</li>
                 <li className="w-[20%] flex items-center"> Price</li>
                 <li className="w-[18%] flex justify-center text-center items-center px-5">
-                 
                   Quantity
                 </li>
                 <li className="w-[20%] flex items-center">total</li>
@@ -44,14 +51,16 @@ const CardSection1 = () => {
                   <p>${item.price}</p>
                 </div>
                 <div className="w-[18%] flex justify-center text-center items-center px-5">
-                  <div className="flex  gap-2 border-2 bg-gray-100 w-full">
-                    <p className="border-r-2 w-1/4">-</p>
-                    <p className="border-r-2 w-1/2">1</p>
-                    <p className="w-1/4">+</p>
+                  <div className="flex  gap-2 border-2 bg-gray-100 w-full cursor-pointer">
+                    <p className="border-r-2 w-1/4" onClick={()=>decrementHandel(item)}>-</p>
+                    <p className="border-r-2 w-1/2">{item.Qont}</p>
+                    <p className="w-1/4" onClick={() => incrementHandel(item)}>
+                      +
+                    </p>
                   </div>
                 </div>
                 <div className="w-[20%] flex items-center">
-                  <p>$219.00</p>
+                  <p>${item.total}</p>
                 </div>
               </div>
             ))}
@@ -117,6 +126,6 @@ const CardSection1 = () => {
       </div>
     </section>
   );
-}
+};
 
-export default CardSection1
+export default CardSection1;

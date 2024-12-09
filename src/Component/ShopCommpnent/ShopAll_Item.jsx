@@ -64,7 +64,7 @@ const ShopAll_Item = () => {
   }
 
   let perPageProduct = data.slice(firstItemIndex, lastItemIndex);
-console.log(perPageProduct);
+
 
   const handelPrivius = () => {
     if (currentPage > 1) {
@@ -91,7 +91,7 @@ console.log(perPageProduct);
 
   let dispatch = useDispatch();
   const cardHandel = (item) => {
-    dispatch(addtoCard({ ...item, Qont: 1 }));
+    dispatch(addtoCard({ ...item, Qont: 1, total: Math.ceil(item.price) }));
   };
 
   return (

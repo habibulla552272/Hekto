@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { apiData } from "./ContextApi";
 import { Link } from "react-router-dom";
-import Products from "./../Pages/Products";
+
 import { FaShoppingCart } from "react-icons/fa";
 import { FaSearchDollar } from "react-icons/fa";
 import { CiHeart } from "react-icons/ci";

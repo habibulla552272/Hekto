@@ -1,20 +1,16 @@
 import React, { useContext } from "react";
 import "../Component/featured.css";
 import { apiData } from "./ContextApi";
-
 import { FaShoppingCart } from "react-icons/fa";
 import { FaSearchDollar } from "react-icons/fa";
-
 import { CiHeart } from "react-icons/ci";
 import Slider from "react-slick";
-
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import { addtoCard } from "./Slice/cardSlice";
+
 
 const Featured = () => {
   const info = useContext(apiData);
@@ -112,7 +108,7 @@ const Featured = () => {
                 <img className="py-10" src={item.thumbnail} alt="" />
                 <div className="absolute group-hover:bottom-2 -bottom-14 duration-700  ease-in-out">
                   <button className="bg-green-400 px-3  py-1 rounded-md">
-                    <Link to="/productdetails">View Details</Link>
+                    <Link to={`/shop/${item.id}`}>View Details</Link>
                   </button>
                 </div>
               </div>

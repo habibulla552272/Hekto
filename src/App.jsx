@@ -6,8 +6,6 @@ import About from './Pages/About';
 import RootLayout from './Component/RootLayout';
 import Blog from './Pages/Blog';
 import Shop from './Pages/Shop';
-
-
 import Best_Seller from './Component/Best_Seller';
 import New_Arrival from './Component/New_Arrival';
 import Special_Offer from './Component/Special_Offer';
@@ -27,7 +25,7 @@ function App() {
         <Route path="/shop" element={<Shop />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/curt" element={<ShoppingCurt />} />
-        <Route path="/productdetails" element={<ProductDetails />} />
+        <Route path="/shop/:id" element={<ProductDetails />} />
         <Route path="/best_seller" element={<Best_Seller />} />
         <Route path="/new_arrival" element={<New_Arrival />} />
         <Route path="/special_offer" element={<Special_Offer />} />

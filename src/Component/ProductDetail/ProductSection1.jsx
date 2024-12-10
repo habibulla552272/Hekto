@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import ProductImage34 from "./ProductImage/Rectangle 134.png";
 import ProductImage36 from "./ProductImage/Rectangle 136.png";
 import ProductImage37 from "./ProductImage/Rectangle 137.png";
@@ -10,9 +10,16 @@ import { CiHeart } from "react-icons/ci";
 import { FaFacebookF } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa6";
 import { CiTwitter } from "react-icons/ci";
+import { useParams } from "react-router-dom";
+
 
 
 const ProductSection1 = () => {
+
+  let product =useParams();
+
+  
+
   return (
     <section>
       <div className="container mx-auto py-20">

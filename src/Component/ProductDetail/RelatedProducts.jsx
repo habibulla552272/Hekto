@@ -2,16 +2,10 @@ import React from 'react'
 import { FaStar } from "react-icons/fa";
 import { FaStarHalfStroke } from "react-icons/fa6";
 import { FaRegStar } from "react-icons/fa6";
-
-
 import Rectangle128 from "./ProductImage/Rectangle 128.png";
-
 import Rectangle130 from "./ProductImage/Rectangle 130.png";
-
 import Rectangle131 from "./ProductImage/Rectangle 131.png";
-
 import Rectangle132 from "./ProductImage/Group 233.png";
-
 const RelatedProducts = () => {
   return (
     <section>

@@ -368,7 +368,7 @@ const ShopAll_Item = () => {
 
                             {/* Same as */}
 
-                            <p>
+                            <p >
                               <CiHeart />
                             </p>
                             <p>

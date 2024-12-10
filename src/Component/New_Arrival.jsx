@@ -5,6 +5,11 @@ import Products from "./../Pages/Products";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaSearchDollar } from "react-icons/fa";
 import { CiHeart } from "react-icons/ci";
+import { useDispatch } from "react-redux";
+import { addtoCard } from "./Slice/cardSlice";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const New_Arrival = () => {
   let info = useContext(apiData);
@@ -20,6 +25,15 @@ const New_Arrival = () => {
   //     return item.NO > 1 && item.No <= 5;
   //   });
 
+  // added item in cardslice  start
+
+  let dispatch = useDispatch();
+  const cardHandel = (item) => {
+    dispatch(addtoCard({ ...item, Qont: 1 }));
+    toast("Item Added  !");
+  };
+  // added item in cardslice  end
+
   return (
     <section>
       <div className="container mx-auto">
@@ -32,9 +46,21 @@ const New_Arrival = () => {
                 </div>
                 <img src={item.thumbnail} alt="" />
                 <div className="flex flex-col gap-2 text-2xl absolute group-hover:bottom-6 -bottom-60 left-3 duration-700 ease-in-out">
-                  <p>
+                  <p onClick={() => cardHandel(item)}>
                     <FaShoppingCart />
                   </p>
+                  <ToastContainer
+                    position="top-center"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light"
+                  />
                   <p>
                     <CiHeart />
                   </p>

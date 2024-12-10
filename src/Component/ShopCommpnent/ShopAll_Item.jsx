@@ -8,9 +8,11 @@ import { CiHeart } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addtoCard } from "../Slice/cardSlice";
-
 import { TfiMenuAlt } from "react-icons/tfi";
 import { CgMenuGridR } from "react-icons/cg";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ShopAll_Item = () => {
   const data = useContext(apiData);
@@ -65,7 +67,6 @@ const ShopAll_Item = () => {
 
   let perPageProduct = data.slice(firstItemIndex, lastItemIndex);
 
-
   const handelPrivius = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
@@ -89,10 +90,14 @@ const ShopAll_Item = () => {
 
   // perpage Handel End
 
+  // added item in cardslice  start
+
   let dispatch = useDispatch();
   const cardHandel = (item) => {
-    dispatch(addtoCard({ ...item, Qont: 1, total: Math.ceil(item.price) }));
+    dispatch(addtoCard({ ...item, Qont: 1 }));
+    toast("Item Added  !");
   };
+  // added item in cardslice  end
 
   return (
     <section>
@@ -348,6 +353,21 @@ const ShopAll_Item = () => {
                             <p onClick={() => cardHandel(item)}>
                               <FaShoppingCart />
                             </p>
+                            <ToastContainer
+                              position="top-center"
+                              autoClose={500}
+                              hideProgressBar={false}
+                              newestOnTop={false}
+                              closeOnClick
+                              rtl={false}
+                              pauseOnFocusLoss
+                              draggable
+                              pauseOnHover
+                              theme="light"
+                            />
+
+                            {/* Same as */}
+
                             <p>
                               <CiHeart />
                             </p>
@@ -370,7 +390,21 @@ const ShopAll_Item = () => {
                               <div className="flex gap-2 text-2xl absolute group-hover:left-5 top-2 -left-28 duration-700 ease-in-out">
                                 <p onClick={() => cardHandel(item)}>
                                   <FaShoppingCart />
+
+                                  {/* Same as */}
                                 </p>
+                                <ToastContainer
+                                  position="top-center"
+                                  autoClose={5000}
+                                  hideProgressBar={false}
+                                  newestOnTop={false}
+                                  closeOnClick
+                                  rtl={false}
+                                  pauseOnFocusLoss
+                                  draggable
+                                  pauseOnHover
+                                  theme="light"
+                                />
                                 <p>
                                   <CiHeart />
                                 </p>
@@ -411,9 +445,10 @@ const ShopAll_Item = () => {
                       Previus
                     </button>
                     <ul className="flex w-56 md:w-96 overflow-x-scroll">
-                      {numbers.map((item) => {
+                      {numbers.map((item, index) => {
                         return (
                           <li
+                            key={index}
                             className={`border-2 rounded-md p-2 cursor-pointer ${
                               currentPage == item
                                 ? "bg-orange-400 text-white"
@@ -451,7 +486,7 @@ const ShopAll_Item = () => {
                         <p>
                           ${item.price}
                           <span className="line-through text-orange-400 px-2">
-                           ${Math.ceil(item.price +10)}
+                            ${Math.ceil(item.price + 10)}
                           </span>
                         </p>
                         <div></div>
@@ -462,9 +497,24 @@ const ShopAll_Item = () => {
                         </p>
                       </div>
                       <div className="flex gap-2 text-2xl py-2">
-                        <p className="px-2 py-2 rounded-full hover:bg-green-300" onClick={() => cardHandel(item)}>
+                        <p
+                          className="px-2 py-2 rounded-full hover:bg-green-300"
+                          onClick={() => cardHandel(item)}
+                        >
                           <FaShoppingCart />
                         </p>
+                        <ToastContainer
+                          position="top-center"
+                          autoClose={5000}
+                          hideProgressBar={false}
+                          newestOnTop={false}
+                          closeOnClick
+                          rtl={false}
+                          pauseOnFocusLoss
+                          draggable
+                          pauseOnHover
+                          theme="light"
+                        />
                         <p>
                           <CiHeart />
                         </p>
@@ -487,6 +537,18 @@ const ShopAll_Item = () => {
                           <p onClick={() => cardHandel(item)}>
                             <FaShoppingCart />
                           </p>
+                          <ToastContainer
+                            position="top-center"
+                            autoClose={5000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover
+                            theme="light"
+                          />
                           <p>
                             <CiHeart />
                           </p>

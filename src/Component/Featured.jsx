@@ -1,26 +1,26 @@
 import React, { useContext } from "react";
-import "../Component/featured.css"
+import "../Component/featured.css";
 import { apiData } from "./ContextApi";
-import cardImage from "../assets/image 1168.png";
+
 import { FaShoppingCart } from "react-icons/fa";
 import { FaSearchDollar } from "react-icons/fa";
 
 import { CiHeart } from "react-icons/ci";
 import Slider from "react-slick";
-import Products from './../Pages/Products';
-import { Link } from "react-router-dom";
 
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import { addtoCard } from "./Slice/cardSlice";
 
 const Featured = () => {
   const info = useContext(apiData);
-  let filteritem= info.filter((item)=>{
-   
-    
-     return item.category === 'laptops'
-  })
-
- 
-
+  let filteritem = info.filter((item) => {
+    return item.category === "laptops";
+  });
 
   const settings = {
     dots: true,
@@ -66,6 +66,17 @@ const Featured = () => {
     //   </div>
     // ),
   };
+
+  // added item in cardslice  start
+
+  let dispatch = useDispatch();
+  const cardHandel = (item) => {
+    dispatch(addtoCard({ ...item, Qont: 1 }));
+     toast.success("Item Added!", {
+       position: toast.POSITION.TOP_RIGHT,
+     });
+  };
+  // added item in cardslice  end
   return (
     <section className="py-20">
       <div className="container mx-auto slider-container overflow-hidden py-2">
@@ -76,9 +87,21 @@ const Featured = () => {
             <div key={index} className="group !w-[97%]  shadow-1xl">
               <div className="flex  flex-col items-center relative overflow-hidden bg-gray-100 rounded-md">
                 <div className="flex gap-2 text-2xl absolute group-hover:left-5 top-2 -left-28 duration-700 ease-in-out">
-                  <p>
+                  <p onClick={() => cardHandel(item)}>
                     <FaShoppingCart />
                   </p>
+                  <ToastContainer
+                    position="top-center"
+                    autoClose={500}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light"
+                  />
                   <p>
                     <CiHeart />
                   </p>

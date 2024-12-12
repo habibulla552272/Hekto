@@ -14,6 +14,7 @@ import ProductDetails from './Pages/ProductDetails';
 import ShoppingCurt from './Component/Card/ShoppingCurt';
 import NotFound_Page from './Component/NotFound_Page';
 import Login from './Pages/Login';
+import SignIn from './Pages/SignIn';
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
         <Route path="/special_offer" element={<Special_Offer />} />
         <Route path="/special_offer" element={<Special_Offer />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signin" element={<SignIn />} />
 
         <Route path="*" element={<NotFound_Page />} />
       </Route>

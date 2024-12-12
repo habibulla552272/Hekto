@@ -10,6 +10,7 @@ import {
   increment,
 } from "../Slice/cardSlice";
 import { Link } from "react-router-dom";
+import Login from "../../Pages/Login";
 
 const CardSection1 = () => {
   let cardData = useSelector((state) => state.cardItemSlice.cartItems);
@@ -35,6 +36,13 @@ const CardSection1 = () => {
     }
   };
 
+  let totalPrice= cardData.reduce((previus,current)=>{
+
+    previus += current.price *current.Qont
+    return previus
+  },0)
+
+ 
   return (
     <section>
       <div className="container mx-auto">
@@ -147,7 +155,7 @@ const CardSection1 = () => {
                   <h2 className="text-xl font-semibold font-serif">
                     Subtotals:
                   </h2>
-                  <p>$449.3</p>
+                  <p>{totalPrice}</p>
                 </div>
                 <div className="flex justify-between border-b-2 py-5">
                   <h2 className="text-xl font-semibold font-serif">Total</h2>

@@ -55,12 +55,14 @@ const Header = () => {
               </p>
             </div>
             <div>
-              <p className="flex items-center">
-                Login
-                <span>
-                  <CiUser />
-                </span>
-              </p>
+              <Link to="/login">
+                <p className="flex items-center">
+                  Login
+                  <span>
+                    <CiUser />
+                  </span>
+                </p>
+              </Link>
             </div>
             <div>
               <p className="flex items-center ">

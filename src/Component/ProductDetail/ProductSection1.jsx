@@ -17,8 +17,7 @@ const ProductSection1 = () => {
   let product = useParams();
   let Data = useContext(apiData);
   let singelData = Data.filter((item) => item.id == product.id);
- 
-console.log(Data);
+
 
 
   return (
@@ -66,12 +65,11 @@ console.log(Data);
                 <CiHeart className="text-xl " />
               </div>
               <h2 className="py-2">Categories:</h2>
-              <h2 className="py-2 flex gap-2"> 
+              <h2 className="py-2 flex gap-2">
                 <h2>tags:</h2>
-              {item.tags.map((tags,index)=>(
-                <p key={index}>{tags}</p>
-              ))
-                 }
+                {item.tags.map((tags, index) => (
+                  <p key={index}>{tags}</p>
+                ))}
               </h2>
               <div className="flex gap-3 items-center">
                 <h2 className="pr-3">Share</h2>

@@ -69,7 +69,7 @@ const Trending_Product = () => {
                   />
                   <div className="absolute group-hover:bottom-2 -bottom-14 duration-700  ease-in-out">
                     <button className="bg-green-400 px-3  py-1 rounded-md">
-                      <Link to="/productdetails">View Details</Link>
+                      <Link to={`/shop/${item.id}`}>View Details</Link>
                     </button>
                   </div>
                 </div>

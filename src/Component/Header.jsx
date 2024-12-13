@@ -39,17 +39,17 @@ const Header = () => {
 
           <div className="flex gap-3 text-sm md:text-lg">
             <div>
-              <p className="flex items-center">
+              <p className="flex gap-1 items-center">
                 English
-                <span>
+                <span className="text-sm">
                   <FaChevronDown />
                 </span>
               </p>
             </div>
             <div>
-              <p className="flex items-center">
+              <p className="flex gap-1 items-center justify-center">
                 USD
-                <span>
+                <span className="text-sm">
                   <FaChevronDown />
                 </span>
               </p>
@@ -65,12 +65,14 @@ const Header = () => {
               </Link>
             </div>
             <div>
-              <p className="flex items-center ">
-                WishList
-                <span>
-                  <CiHeart />
-                </span>
-              </p>
+              <Link to="/wishlist">
+                <p className="flex items-center ">
+                  WishList
+                  <span className="">
+                    <CiHeart />
+                  </span>
+                </p>
+              </Link>
             </div>
             <div className="flex items-center">
               <p className="text-2xl flex relative">

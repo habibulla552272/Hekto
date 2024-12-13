@@ -10,7 +10,7 @@ import {
   increment,
 } from "../Slice/cardSlice";
 import { Link } from "react-router-dom";
-import Login from "../../Pages/Login";
+
 
 const CardSection1 = () => {
   let cardData = useSelector((state) => state.cardItemSlice.cartItems);
@@ -52,68 +52,72 @@ const CardSection1 = () => {
           <div className="left md:w-[70%]">
             {cardData.length > 0 ? (
               <div>
-                <div>
-                  <div>
-                    <ul className="flex justify-center">
-                      <li className="w-2/5 ">Product</li>
-                      <li className="w-[20%] flex items-center"> Price</li>
-                      <li className="w-[18%] flex justify-center text-center items-center px-5">
+                <div className="px-2">
+                  <div className="w-11/12 mx-auto">
+                    <ul className="flex gap-10 justify-center">
+                      <li className="md:w-2/5 ">Product</li>
+                      <li className="md:w-[20%] flex items-center"> Price</li>
+                      <li className="md:w-[18%] flex justify-center text-center items-center px-5">
                         Quantity
                       </li>
-                      <li className="w-[20%] flex items-center">total</li>
+                      <li className="md:w-[20%] flex items-center">total</li>
                     </ul>
                   </div>
 
-                  {cardData.map((item, index) => (
-                    <div
-                      key={index}
-                      className="flex justify-between items-center  py-4"
-                    >
-                      <div className="w-2/5 flex flex-col md:flex-row gap-2">
-                        <div className=" relative w-1/2 rounded-md">
-                          <p
-                            onClick={() => deleteHandel(index)}
-                            className="absolute right-0 bg-green-300 px-2 py-2 rounded-full hover:bg-orange-400"
-                          >
-                            <FaTrash />
-                          </p>
-                          <img
-                            src={item.thumbnail}
-                            alt=""
-                            className="bg-gray-300 w-full"
-                          />
+                  <div className="w-11/12 mx-auto">
+                    {cardData.map((item, index) => (
+                      <div
+                        key={index}
+                        className="flex flex-col md:flex-row justify-between   py-4"
+                      >
+                        <div className="md:w-2/5 flex flex-col md:flex-row gap-2">
+                          <div className="relative  md:w-1/2 rounded-md">
+                            <p
+                              onClick={() => deleteHandel(index)}
+                              className="absolute right-0 bg-green-300 px-2 py-2 rounded-full hover:bg-orange-400"
+                            >
+                              <FaTrash />
+                            </p>
+                            <img
+                              src={item.thumbnail}
+                              alt=""
+                              className="bg-gray-300 w-64 md:w-full"
+                            />
+                          </div>
+                          <div className="flex flex-col gap-1 justify-center w-11/12 ">
+                            <h2 className="text-sm md:text-lg">{item.title}</h2>
+                            <p className="text-sm">Color:Brown</p>
+                            <p className="text-sm">Size:XL</p>
+                          </div>
                         </div>
-                        <div className="flex flex-col gap-1 justify-center w-1/2">
-                          <h2 className="text-sm md:text-lg">{item.title}</h2>
-                          <p className="text-sm">Color:Brown</p>
-                          <p className="text-sm">Size:XL</p>
+                        <div className="flex  md:flex md:w-[60%] justify-between">
+                          <div className="w-[20%] flex items-center">
+                            <p>${item.price}</p>
+                          </div>
+                          <div className="w-[18%] flex justify-center text-center items-center px-5">
+                            <div className="flex  gap-2 border-2 bg-gray-100 w-full cursor-pointer">
+                              <p
+                                className="border-r-2 w-1/4"
+                                onClick={() => decrementHandel(index)}
+                              >
+                                -
+                              </p>
+                              <p className="border-r-2 w-1/2">{item.Qont}</p>
+                              <p
+                                className="w-1/4"
+                                onClick={() => incrementHandel(index)}
+                              >
+                                +
+                              </p>
+                            </div>
+                          </div>
+                          <div className="w-[20%] flex items-center">
+                            <p>${item.price * item.Qont.toFixed(2)}</p>
+                          </div>
                         </div>
                       </div>
-                      <div className="w-[20%] flex items-center">
-                        <p>${item.price}</p>
-                      </div>
-                      <div className="w-[18%] flex justify-center text-center items-center px-5">
-                        <div className="flex  gap-2 border-2 bg-gray-100 w-full cursor-pointer">
-                          <p
-                            className="border-r-2 w-1/4"
-                            onClick={() => decrementHandel(index)}
-                          >
-                            -
-                          </p>
-                          <p className="border-r-2 w-1/2">{item.Qont}</p>
-                          <p
-                            className="w-1/4"
-                            onClick={() => incrementHandel(index)}
-                          >
-                            +
-                          </p>
-                        </div>
-                      </div>
-                      <div className="w-[20%] flex items-center">
-                        <p>${item.Qont * item.price.toFixed(2)}</p>
-                      </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
                 <div className="flex justify-between px-5 font-semibold">
                   <button className="bg-buttom-bg px-3 py-2 text-white rounded-md">
@@ -163,7 +167,7 @@ const CardSection1 = () => {
                 </div>
                 <div className="flex items-center gap-4  py-5">
                   <input type="checkbox" />
-                  <p>Shi;;ing & taxes Calculated at checkout</p>
+                  <p>Shiping & taxes Calculated at checkout</p>
                 </div>
                 <button className="bg-green-500 w-full py-2 text-center">
                   Proceed To Checkout
@@ -197,7 +201,7 @@ const CardSection1 = () => {
                   />
                 </div>
                 <button className="bg-buttom-bg  py-2 px-7 text-center">
-                  Proceed To Checkout
+                  <Link to="/checkout">Proceed To Checkout</Link>
                 </button>
               </div>
             </div>

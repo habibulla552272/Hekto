@@ -5,12 +5,11 @@ import { Link } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaSearchDollar } from "react-icons/fa";
 import { CiHeart } from "react-icons/ci";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { addtoCard } from "./Slice/cardSlice";
-
 
 const Special_Offer = () => {
   let info = useContext(apiData);
@@ -46,6 +45,11 @@ const Special_Offer = () => {
                   <p className="text-xl text-white py-2 px-5">Sale</p>
                 </div>
                 <img src={item.thumbnail} alt="" />
+                <div className="absolute flex translate-x-[90%] group-hover:bottom-2 -bottom-14 duration-700  ease-in-out">
+                  <button className="bg-green-400 px-3  py-1 rounded-md">
+                    <Link to={`/shop/${item.id}`}>View Details</Link>
+                  </button>
+                </div>
                 <div className="flex flex-col gap-2 text-2xl absolute group-hover:bottom-6 -bottom-60 left-3 duration-700 ease-in-out">
                   <p onClick={() => cardHandel(item)}>
                     <FaShoppingCart />

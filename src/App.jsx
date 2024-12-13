@@ -15,6 +15,8 @@ import ShoppingCurt from './Component/Card/ShoppingCurt';
 import NotFound_Page from './Component/NotFound_Page';
 import Login from './Pages/Login';
 import SignIn from './Pages/SignIn';
+import Checkout from './Pages/Checkout';
+import WishList from './Pages/WishList';
 
 
 function App() {
@@ -34,6 +36,8 @@ function App() {
         <Route path="/special_offer" element={<Special_Offer />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signin" element={<SignIn />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/wishlist" element={<WishList />} />
 
         <Route path="*" element={<NotFound_Page />} />
       </Route>

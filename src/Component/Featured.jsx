@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { addtoCard } from "./Slice/cardSlice";
+import { addtoWishList } from "./Slice/wishlishSlice";
 
 
 const Featured = () => {
@@ -68,11 +69,18 @@ const Featured = () => {
   let dispatch = useDispatch();
   const cardHandel = (item) => {
     dispatch(addtoCard({ ...item, Qont: 1 }));
-     toast.success("Item Added!", {
-       position: toast.POSITION.TOP_RIGHT,
-     });
+    toast.success("Item Added!", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
   };
   // added item in cardslice  end
+
+  // added item in wishlisht  start
+
+  let wishListHandel = (item)=>{
+    dispatch(addtoWishList(item))
+  }
+
   return (
     <section className="py-20">
       <div className="container mx-auto slider-container overflow-hidden py-2">
@@ -98,7 +106,7 @@ const Featured = () => {
                     pauseOnHover
                     theme="light"
                   />
-                  <p>
+                  <p onClick={()=>wishListHandel(item)}>
                     <CiHeart />
                   </p>
                   <p>

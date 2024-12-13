@@ -7,8 +7,6 @@ import { Link } from "react-router-dom";
 const Top_Categories = () => {
   const info = useContext(apiData);
   let filteritem = info.filter((item) => {
-    
-
     return item.category === "laptops";
   });
 
@@ -75,8 +73,8 @@ const Top_Categories = () => {
                   <div className="relative mx-auto overflow-hidden group  bg-gray-100  flex flex-col justify-center items-center pb-6 px-7 w-56 h-56 rounded-full hover:before:w-[50%] hover:before:h-[80%] hover:before:rounded-[70%] hover:before:rotate-1 hover:before:bg-blue-700 before:-bottom-0 hover:before:absolute hover:before:-left-20">
                     <img src={item.thumbnail} alt="" />
                     <div className="absolute -bottom-32 group-hover:bottom-2 duration-700 ease-in-out">
-                      <button className="px-6 py-1 bg-buttom-bg rounded-md">
-                        <Link to="/productdetails">View Details</Link>
+                      <button className="bg-green-400 px-3  py-1 rounded-md">
+                        <Link to={`/shop/${item.id}`}>View Details</Link>
                       </button>
                     </div>
                     {/* <div className='absolute w-full h-full -left-20 top-20 rotate-180    rounded-full bg-blue-600'></div> */}

@@ -54,23 +54,26 @@ const CardSection1 = () => {
               <div>
                 <div className="px-2">
                   <div className="w-11/12 mx-auto">
-                    <ul className="flex gap-10 justify-center">
-                      <li className="md:w-2/5 ">Product</li>
-                      <li className="md:w-[20%] flex items-center"> Price</li>
-                      <li className="md:w-[18%] flex justify-center text-center items-center px-5">
-                        Quantity
-                      </li>
-                      <li className="md:w-[20%] flex items-center">total</li>
+                    <ul className="flex gap-10 justify-between">
+                      <li  className="w-[42%]">Product</li>
+                      <div className="w-[56%] flex justify-between">
+                        
+                        <li className=" flex items-center"> Price</li>
+                        <li className=" flex justify-center text-center items-center px-5">
+                          Quantity
+                        </li>
+                        <li className="flex items-center">total</li>
+                      </div>
                     </ul>
                   </div>
 
-                  <div className="w-11/12 mx-auto">
+                  <div className="w-11/12 mx-auto ">
                     {cardData.map((item, index) => (
                       <div
                         key={index}
                         className="flex flex-col md:flex-row justify-between   py-4"
                       >
-                        <div className="md:w-2/5 flex flex-col md:flex-row gap-2">
+                        <div className="md:w-[42%] flex flex-col md:flex-row gap-2">
                           <div className="relative  md:w-1/2 rounded-md">
                             <p
                               onClick={() => deleteHandel(index)}
@@ -90,28 +93,28 @@ const CardSection1 = () => {
                             <p className="text-sm">Size:XL</p>
                           </div>
                         </div>
-                        <div className="flex  md:flex md:w-[60%] justify-between">
-                          <div className="w-[20%] flex items-center">
-                            <p>${item.price}</p>
+                        <div className="flex  md:flex md:w-[56%] justify-between">
+                          <div className="flex items-center text-center">
+                            <p className="text-center">${item.price}</p>
                           </div>
-                          <div className="w-[18%] flex justify-center text-center items-center px-5">
-                            <div className="flex  gap-2 border-2 bg-gray-100 w-full cursor-pointer">
+                          <div className="flex justify-center text-center items-center px-5">
+                            <div className="flex   gap-2 border-2 bg-gray-100 w-full cursor-pointer">
                               <p
-                                className="border-r-2 w-1/4"
+                                className="border-r-2 w-8 "
                                 onClick={() => decrementHandel(index)}
                               >
                                 -
                               </p>
-                              <p className="border-r-2 w-1/2">{item.Qont}</p>
+                              <p className="border-r-2 w-8">{item.Qont}</p>
                               <p
-                                className="w-1/4"
+                                className="w-8"
                                 onClick={() => incrementHandel(index)}
                               >
                                 +
                               </p>
                             </div>
                           </div>
-                          <div className="w-[20%] flex items-center">
+                          <div className=" flex items-center">
                             <p>${item.price * item.Qont.toFixed(2)}</p>
                           </div>
                         </div>

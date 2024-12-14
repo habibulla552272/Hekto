@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { CiHeart } from "react-icons/ci";
 import { useDispatch } from "react-redux";
 import { addtoCard } from "./Slice/cardSlice";
+import { addtoWishList } from "./Slice/wishlishSlice";
 
 
 const Trending_Product = () => {
@@ -27,6 +28,10 @@ const Trending_Product = () => {
     toast("Item Added  !");
   };
   // added item in cardslice  end
+    let wishListHandel = (item) => {
+      dispatch(addtoWishList(item));
+      toast.success("Item Added in wishlist!");
+    };
   return (
     <section>
       <div className="container mx-auto py-10">
@@ -40,7 +45,7 @@ const Trending_Product = () => {
               >
                 <div className="flex  flex-col items-center relative overflow-hidden bg-white  rounded-md">
                   <div className="flex gap-2 text-2xl absolute group-hover:left-5 top-2 -left-28 duration-700 ease-in-out">
-                    <p onClick={()=> cardHandel(item)}>
+                    <p onClick={() => cardHandel(item)}>
                       <FaShoppingCart />
                     </p>
                     <ToastContainer
@@ -55,9 +60,21 @@ const Trending_Product = () => {
                       pauseOnHover
                       theme="light"
                     />
-                    <p>
+                    <p onClick={()=>wishListHandel(item)}>
                       <CiHeart />
                     </p>
+                    <ToastContainer
+                      position="top-center"
+                      autoClose={5000}
+                      hideProgressBar={false}
+                      newestOnTop={false}
+                      closeOnClick
+                      rtl={false}
+                      pauseOnFocusLoss
+                      draggable
+                      pauseOnHover
+                      theme="light"
+                    />
                     <p>
                       <FaSearchDollar />
                     </p>

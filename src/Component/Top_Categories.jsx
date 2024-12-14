@@ -3,6 +3,8 @@ import testcard from "../assets/image 1168.png";
 import Slider from "react-slick";
 import { apiData } from "./ContextApi";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Top_Categories = () => {
   const info = useContext(apiData);
@@ -54,6 +56,8 @@ const Top_Categories = () => {
     //   </div>
     // ),
   };
+
+
 
   return (
     <section className="py-10">

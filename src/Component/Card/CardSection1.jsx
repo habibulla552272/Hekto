@@ -51,6 +51,8 @@ const CardSection1 = () => {
 
           <div className="left md:w-[70%]">
             {cardData.length > 0 ? (
+
+              
               <div>
                 <div className="px-2">
                   <div className="w-10/12  md:w-11/12 mx-auto">
@@ -69,6 +71,9 @@ const CardSection1 = () => {
 
                   <div className="w-11/12 mx-auto ">
                     {cardData.map((item, index) => (
+
+                   
+
                       <div
                         key={index}
                         className="flex flex-col md:flex-row justify-between   py-4"
@@ -84,7 +89,7 @@ const CardSection1 = () => {
                             <img
                               src={item.thumbnail}
                               alt=""
-                              className="bg-gray-300 md:w-full"
+                              className="bg-gray-300 w-full md:w-full"
                             />
                           </div>
                           <div className="flex flex-col gap-1 justify-center w-10/12 mx-auto md:mx-0 ">
@@ -119,6 +124,7 @@ const CardSection1 = () => {
                           </div>
                         </div>
                       </div>
+
                     ))}
                   </div>
                 </div>
@@ -162,7 +168,7 @@ const CardSection1 = () => {
                   <h2 className="text-xl font-semibold font-serif">
                     Subtotals:
                   </h2>
-                  <p>{totalPrice}</p>
+                  <p>{totalPrice.toFixed(2)}</p>
                 </div>
                 <div className="flex justify-between border-b-2 py-5">
                   <h2 className="text-xl font-semibold font-serif">Total</h2>

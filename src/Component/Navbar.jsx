@@ -95,16 +95,22 @@ const Navbar = () => {
 
         <div className="">
           {searchFilerProducts.length > 0 && (
-            <div className="px-4 md:absolute md:w-96 right-24 top-24  h-96 overflow-y-scroll z-40">
+            <div className="px-4 md:absolute md:w-96 right-24 top-24 md:top-32 h-96 overflow-y-scroll z-40">
               {searchFilerProducts.map((item, index) => (
-                <div
-                  key={index}
-                  className="flex justify-between items-center  border-2 my-3 bg-gray-200"
-                >
-                  <img className="w-1/3 bg-white" src={item.thumbnail} alt="" />
-                  <h2 className="text-sm w-5/12 px-3">{item.title}</h2>
-                  <p className="pr-4 w-1/4">{item.price}</p>
-                </div>
+                <Link key={index} to={`/shop/${item.id}`}>
+                  <div
+                    key={index}
+                    className="flex justify-between items-center  border-2 my-3 bg-gray-200"
+                  >
+                    <img
+                      className="w-1/3 bg-white"
+                      src={item.thumbnail}
+                      alt=""
+                    />
+                    <h2 className="text-sm w-5/12 px-3">{item.title}</h2>
+                    <p className="pr-4 w-1/4">{item.price}</p>
+                  </div>
+                </Link>
               ))}
             </div>
           )}

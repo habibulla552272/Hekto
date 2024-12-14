@@ -21,7 +21,7 @@ const Header = () => {
   return (
     <section className="bg-heder-bg">
       <div className="container mx-auto text-white ">
-        <div className="flex flex-wrap justify-center gap-5 md:justify-between py-2 md:py-5 font-josefin">
+        <div className="flex flex-col md:flex-row items-center flex-wrap justify-center gap-5 md:justify-between py-2 md:py-5 font-josefin">
           <div className="text-sm md:text-lg div-1 flex items-center gap-4">
             <div className="flex items-center gap-2">
               <p className=" flex items-center">

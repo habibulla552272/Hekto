@@ -69,9 +69,7 @@ const Featured = () => {
   let dispatch = useDispatch();
   const cardHandel = (item) => {
     dispatch(addtoCard({ ...item, Qont: 1 }));
-    toast.success("Item Added!", {
-      position: toast.POSITION.TOP_RIGHT,
-    });
+    toast.success("Item Added!")
   };
   // added item in cardslice  end
 
@@ -79,6 +77,7 @@ const Featured = () => {
 
   let wishListHandel = (item) => {
     dispatch(addtoWishList(item));
+    toast.success("Item Added in wishlist!");
   };
   // added item in wishlisht  end
 

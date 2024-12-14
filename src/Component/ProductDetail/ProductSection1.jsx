@@ -12,13 +12,32 @@ import { FaInstagram } from "react-icons/fa6";
 import { CiTwitter } from "react-icons/ci";
 import { useParams } from "react-router-dom";
 import { apiData } from "../ContextApi";
+import { useDispatch } from "react-redux";
+import { addtoCard } from "../Slice/cardSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { addtoWishList } from "../Slice/wishlishSlice";
 
 const ProductSection1 = () => {
   let product = useParams();
   let Data = useContext(apiData);
   let singelData = Data.filter((item) => item.id == product.id);
 
+  // added item in cardslice  start
 
+  let dispatch = useDispatch();
+  const cardHandel = (item) => {
+    dispatch(addtoCard({ ...item, Qont: 1 }));
+    toast.success("Item Added!");
+  };
+  // added item in cardslice  end
+  // added item in wishlisht  start
+
+  let wishListHandel = (item) => {
+    dispatch(addtoWishList(item));
+    toast.success("Item Added in wishlist!");
+  };
+  // added item in wishlisht  end
 
   return (
     <section>
@@ -60,9 +79,41 @@ const ProductSection1 = () => {
               <h3 className="text-2xl font-serif">color</h3>
               <p>{item.description}</p>
               <div className="flex gap-3 items-center py-3">
-                <button>Add to cart</button>
+                <button
+                  onClick={() => cardHandel(item)}
+                  className="bg-buttom-bg px-2 py-1 rounded-md"
+                >
+                  Add to cart
+                </button>
+                <ToastContainer
+                  position="top-center"
+                  autoClose={500}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  theme="light"
+                />
 
-                <CiHeart className="text-xl " />
+                <CiHeart
+                  onClick={() => wishListHandel(item)}
+                  className="text-xl "
+                />
+                <ToastContainer
+                  position="top-center"
+                  autoClose={500}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  theme="light"
+                />
               </div>
               <h2 className="py-2">Categories:</h2>
               <h2 className="py-2 flex gap-2">

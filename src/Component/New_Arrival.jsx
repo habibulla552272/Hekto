@@ -10,6 +10,7 @@ import { addtoCard } from "./Slice/cardSlice";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { addtoWishList } from "./Slice/wishlishSlice";
 
 const New_Arrival = () => {
   let info = useContext(apiData);
@@ -33,6 +34,13 @@ const New_Arrival = () => {
     toast("Item Added  !");
   };
   // added item in cardslice  end
+    // added item in wishlisht  start
+  
+    let wishListHandel = (item) => {
+      dispatch(addtoWishList(item));
+      toast("Item Added  in WishItem !");
+    };
+    // added item in wishlisht  end
 
   return (
     <section>
@@ -66,9 +74,21 @@ const New_Arrival = () => {
                     pauseOnHover
                     theme="light"
                   />
-                  <p>
+                  <p onClick={() => wishListHandel(item)}>
                     <CiHeart />
                   </p>
+                  <ToastContainer
+                    position="top-center"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light"
+                  />
                   <p>
                     <FaSearchDollar />
                   </p>

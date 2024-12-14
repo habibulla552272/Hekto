@@ -13,6 +13,7 @@ import { CgMenuGridR } from "react-icons/cg";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { addtoWishList } from "../Slice/wishlishSlice";
 
 const ShopAll_Item = () => {
   const data = useContext(apiData);
@@ -98,6 +99,14 @@ const ShopAll_Item = () => {
     toast("Item Added  !");
   };
   // added item in cardslice  end
+
+   // added item in wishlisht  start
+  
+    let wishListHandel = (item) => {
+      dispatch(addtoWishList(item));
+      toast("Item Added in WishList !");
+    };
+    // added item in wishlisht  end
 
   return (
     <section>
@@ -368,9 +377,21 @@ const ShopAll_Item = () => {
 
                             {/* Same as */}
 
-                            <p >
+                            <p onClick={() => wishListHandel(item)} className="hover:bg-black hover:text-white">
                               <CiHeart />
                             </p>
+                            <ToastContainer
+                              position="top-center"
+                              autoClose={500}
+                              hideProgressBar={false}
+                              newestOnTop={false}
+                              closeOnClick
+                              rtl={false}
+                              pauseOnFocusLoss
+                              draggable
+                              pauseOnHover
+                              theme="light"
+                            />
                             <p>
                               <FaSearchDollar />
                             </p>
@@ -405,9 +426,21 @@ const ShopAll_Item = () => {
                                   pauseOnHover
                                   theme="light"
                                 />
-                                <p>
+                                <p onClick={() => wishListHandel(item)}>
                                   <CiHeart />
                                 </p>
+                                <ToastContainer
+                                  position="top-center"
+                                  autoClose={500}
+                                  hideProgressBar={false}
+                                  newestOnTop={false}
+                                  closeOnClick
+                                  rtl={false}
+                                  pauseOnFocusLoss
+                                  draggable
+                                  pauseOnHover
+                                  theme="light"
+                                />
                                 <p>
                                   <FaSearchDollar />
                                 </p>
@@ -517,9 +550,21 @@ const ShopAll_Item = () => {
                           pauseOnHover
                           theme="light"
                         />
-                        <p>
+                        <p onClick={() => wishListHandel(item)}>
                           <CiHeart />
                         </p>
+                        <ToastContainer
+                          position="top-center"
+                          autoClose={500}
+                          hideProgressBar={false}
+                          newestOnTop={false}
+                          closeOnClick
+                          rtl={false}
+                          pauseOnFocusLoss
+                          draggable
+                          pauseOnHover
+                          theme="light"
+                        />
                         <p>
                           <FaSearchDollar />
                         </p>
@@ -551,9 +596,21 @@ const ShopAll_Item = () => {
                             pauseOnHover
                             theme="light"
                           />
-                          <p>
+                          <p onClick={() => wishListHandel(item)}>
                             <CiHeart />
                           </p>
+                          <ToastContainer
+                            position="top-center"
+                            autoClose={500}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover
+                            theme="light"
+                          />
                           <p>
                             <FaSearchDollar />
                           </p>

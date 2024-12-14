@@ -53,10 +53,10 @@ const CardSection1 = () => {
             {cardData.length > 0 ? (
               <div>
                 <div className="px-2">
-                  <div className="w-11/12 mx-auto">
-                    <ul className="flex gap-10 justify-between">
-                      <li  className="w-[42%]">Product</li>
-                      <div className="w-[56%] flex justify-between">
+                  <div className="w-10/12  md:w-11/12 mx-auto">
+                    <ul className="flex  px-3 md:px-0 justify-between">
+                      <li  className=" md:w-[42%]">Product</li>
+                      <div className="md:w-[56%] flex justify-between">
                         
                         <li className=" flex items-center"> Price</li>
                         <li className=" flex justify-center text-center items-center px-5">
@@ -73,41 +73,41 @@ const CardSection1 = () => {
                         key={index}
                         className="flex flex-col md:flex-row justify-between   py-4"
                       >
-                        <div className="md:w-[42%] flex flex-col md:flex-row gap-2">
-                          <div className="relative  md:w-1/2 rounded-md">
+                        <div className="md:w-[42%] flex flex-col md:flex-row gap-4 md:gap-1">
+                          <div className="relative w-10/12 mx-auto md:mx-0  md:w-1/2 rounded-md">
                             <p
                               onClick={() => deleteHandel(index)}
-                              className="absolute right-0 bg-green-300 px-2 py-2 rounded-full hover:bg-orange-400"
+                              className="absolute right-2  top-1 md:right-0 md:top-0 bg-green-300 px-2 py-2 rounded-full hover:bg-orange-400"
                             >
                               <FaTrash />
                             </p>
                             <img
                               src={item.thumbnail}
                               alt=""
-                              className="bg-gray-300 w-64 md:w-full"
+                              className="bg-gray-300 md:w-full"
                             />
                           </div>
-                          <div className="flex flex-col gap-1 justify-center w-11/12 ">
-                            <h2 className="text-sm md:text-lg">{item.title}</h2>
+                          <div className="flex flex-col gap-1 justify-center w-10/12 mx-auto md:mx-0 ">
+                            <h2 className="text-sm md:text-lg font-josefin font-semibold">{item.title}</h2>
                             <p className="text-sm">Color:Brown</p>
                             <p className="text-sm">Size:XL</p>
                           </div>
                         </div>
-                        <div className="flex  md:flex md:w-[56%] justify-between">
+                        <div className="flex  md:flex w-10/12 mx-auto md:w-[56%] justify-between">
                           <div className="flex items-center text-center">
                             <p className="text-center">${item.price}</p>
                           </div>
                           <div className="flex justify-center text-center items-center px-5">
                             <div className="flex   gap-2 border-2 bg-gray-100 w-full cursor-pointer">
                               <p
-                                className="border-r-2 w-8 "
+                                className="border-r-2 w-5 md:w-8 "
                                 onClick={() => decrementHandel(index)}
                               >
                                 -
                               </p>
-                              <p className="border-r-2 w-8">{item.Qont}</p>
+                              <p className="border-r-2 w-5 md:w-8">{item.Qont}</p>
                               <p
-                                className="w-8"
+                                className="w-5 md:w-8"
                                 onClick={() => incrementHandel(index)}
                               >
                                 +

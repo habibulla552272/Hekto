@@ -77,9 +77,10 @@ const Featured = () => {
 
   // added item in wishlisht  start
 
-  let wishListHandel = (item)=>{
-    dispatch(addtoWishList(item))
-  }
+  let wishListHandel = (item) => {
+    dispatch(addtoWishList(item));
+  };
+  // added item in wishlisht  end
 
   return (
     <section className="py-20">
@@ -106,7 +107,7 @@ const Featured = () => {
                     pauseOnHover
                     theme="light"
                   />
-                  <p onClick={()=>wishListHandel(item)}>
+                  <p onClick={() => wishListHandel(item)}>
                     <CiHeart />
                   </p>
                   <p>

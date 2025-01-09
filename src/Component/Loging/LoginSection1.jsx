@@ -1,49 +1,63 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const LoginSection1 = () => {
-   let [email, setEmail] = useState("");
-    let [password, setPassword] = useState("");
-    let [emailMessage, setEmailMessage] = useState("");
-    let [passwordMessage, setPasswordMessage] = useState("");
-    let [success, setSuccess] = useState("");
-  
-    const auth = getAuth();
-  
-    let emailHandel = (e) => {
-      setEmail(e.target.value);
-    };
-    let passwordHandel = (e) => {
-      setPassword(e.target.value);
-    };
-  
-    const signInHandel = () => {
-      if (!email) {
-        setEmailMessage("Email De");
-      }else if (!/(?=.{8,})/.test(password)) {
-        setEmailMessage("");
-        setPasswordMessage("Please Minimum 8 digit");
-      } else {
-        setEmailMessage('')
-        setPasswordMessage('')
-        createUserWithEmailAndPassword(auth, email, password)
-          .then(() => {
-            setSuccess("Congratulation MD for Create your account");
-            
-          })
-          .catch((error) => {
-            let err = error.code;
-            if (err.includes("auth/email-already-in-use")) {
-              setSuccess("This Email all Redy existe");
-            } else {
-              setEmailMessage("");
-              setPasswordMessage("");
-            }
-  
-            // ..
-          });
-      }
-    };
+  let [email, setEmail] = useState("");
+  let [password, setPassword] = useState("");
+  let [emailMessage, setEmailMessage] = useState("");
+  let [passwordMessage, setPasswordMessage] = useState("");
+
+  let emailHandel = (e) => {
+    setEmail(e.target.value);
+  };
+  let passwordHandel = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const auth = getAuth();
+  const navigate = useNavigate();
+
+  const loginHandel = () => {
+    if (!email) {
+      setEmailMessage("Email De");
+    } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      setEmailMessage("Correct Email  De");
+    } else if (!password) {
+      setEmailMessage("");
+      setPasswordMessage("password de");
+    } else if (!/(?=.{8,})/.test(password)) {
+      setEmailMessage("");
+      setPasswordMessage("Please Minimum 8 digit");
+    } else {
+      setEmailMessage("");
+      setPasswordMessage("");
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+
+          if (user.emailVerified) {
+            setTimeout(() => {
+              navigate("/");
+            }, 2000);
+          }
+
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode);
+          console.log(errorMessage);
+          
+          
+
+          setPasswordMessage("you don't have account create your account");
+        });
+    }
+  };
+
   return (
     <section>
       <div className="container mx-auto py-10">
@@ -57,21 +71,33 @@ const LoginSection1 = () => {
 
           <div>
             <div className="flex flex-col gap-8 py-4">
-              <input onChange ={(e)=>{emailHandel(e)}}
-                className="w-full outline-none px-2 py-2 border-2 rounded-md"
-                type="email"
-                placeholder="Email Address"
-              />
-              <input
-                className="w-full outline-none px-2 py-2 border-2 rounded-md"
-                type="password"
-                placeholder="Password"
-              />
+              <div>
+                <input
+                  onChange={emailHandel}
+                  className="w-full outline-none px-2 py-2 border-2 rounded-md"
+                  type="email"
+                  placeholder="Email Address"
+                />
+                <p>{emailMessage}</p>
+              </div>
+
+              <div>
+                <input
+                  onChange={passwordHandel}
+                  className="w-full outline-none px-2 py-2 border-2 rounded-md"
+                  type="password"
+                  placeholder="Password"
+                />
+                <p>{passwordMessage}</p>
+              </div>
             </div>
 
             <p className="py-2 cursor-pointer">Forgot your password?</p>
 
-            <button className="bg-buttom-bg text-center w-full py-2 rounded-md">
+            <button
+              onClick={loginHandel}
+              className="bg-buttom-bg text-center w-full py-2 rounded-md"
+            >
               Login
             </button>
 
@@ -88,6 +114,6 @@ const LoginSection1 = () => {
       </div>
     </section>
   );
-}
+};
 
-export default LoginSection1
+export default LoginSection1;

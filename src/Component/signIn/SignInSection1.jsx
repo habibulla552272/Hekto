@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const SignInSection1 = () => {
   let [email, setEmail] = useState("");
@@ -9,6 +10,7 @@ const SignInSection1 = () => {
   let [success, setSuccess] = useState("");
 
   const auth = getAuth();
+  const navigate= useNavigate();
 
   let emailHandel = (e) => {
     setEmail(e.target.value);
@@ -25,25 +27,25 @@ const SignInSection1 = () => {
     } else if (!password) {
       setEmailMessage("");
       setPasswordMessage("password de");
-    } else if (!/(?=.*[a-z])/.test(password)) {
-      setEmailMessage("");
-      setPasswordMessage("Please Lowercase");
-    } else if (!/(?=.*[A-Z])/.test(password)) {
-      setEmailMessage("");
-      setPasswordMessage("Please uppderCase");
-    } else if (!/(?=.*[0-9])/.test(password)) {
-      setEmailMessage("");
-      setPasswordMessage("Please number");
     } else if (!/(?=.{8,})/.test(password)) {
       setEmailMessage("");
       setPasswordMessage("Please Minimum 8 digit");
     } else {
-      setEmailMessage('')
-      setPasswordMessage('')
+      setEmailMessage("");
+      setPasswordMessage("");
       createUserWithEmailAndPassword(auth, email, password)
         .then(() => {
           setSuccess("Congratulation MD for Create your account");
-          
+          sendEmailVerification(auth.currentUser).then(() => {
+            // Email verification sent!
+            // ...
+            console.log('email verification');
+            setTimeout(() => {
+              navigate("/login");
+              
+            }, 3000);
+            
+          });
         })
         .catch((error) => {
           let err = error.code;

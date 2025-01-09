@@ -1,7 +1,49 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 
 const LoginSection1 = () => {
+   let [email, setEmail] = useState("");
+    let [password, setPassword] = useState("");
+    let [emailMessage, setEmailMessage] = useState("");
+    let [passwordMessage, setPasswordMessage] = useState("");
+    let [success, setSuccess] = useState("");
+  
+    const auth = getAuth();
+  
+    let emailHandel = (e) => {
+      setEmail(e.target.value);
+    };
+    let passwordHandel = (e) => {
+      setPassword(e.target.value);
+    };
+  
+    const signInHandel = () => {
+      if (!email) {
+        setEmailMessage("Email De");
+      }else if (!/(?=.{8,})/.test(password)) {
+        setEmailMessage("");
+        setPasswordMessage("Please Minimum 8 digit");
+      } else {
+        setEmailMessage('')
+        setPasswordMessage('')
+        createUserWithEmailAndPassword(auth, email, password)
+          .then(() => {
+            setSuccess("Congratulation MD for Create your account");
+            
+          })
+          .catch((error) => {
+            let err = error.code;
+            if (err.includes("auth/email-already-in-use")) {
+              setSuccess("This Email all Redy existe");
+            } else {
+              setEmailMessage("");
+              setPasswordMessage("");
+            }
+  
+            // ..
+          });
+      }
+    };
   return (
     <section>
       <div className="container mx-auto py-10">
@@ -15,7 +57,7 @@ const LoginSection1 = () => {
 
           <div>
             <div className="flex flex-col gap-8 py-4">
-              <input
+              <input onChange ={(e)=>{emailHandel(e)}}
                 className="w-full outline-none px-2 py-2 border-2 rounded-md"
                 type="email"
                 placeholder="Email Address"
@@ -30,7 +72,7 @@ const LoginSection1 = () => {
             <p className="py-2 cursor-pointer">Forgot your password?</p>
 
             <button className="bg-buttom-bg text-center w-full py-2 rounded-md">
-              Sign UP
+              Login
             </button>
 
             <div className="flex gap-2 justify-between px-2 pt-4">

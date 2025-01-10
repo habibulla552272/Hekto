@@ -11,7 +11,6 @@ import {
 } from "../Slice/cardSlice";
 import { Link } from "react-router-dom";
 
-
 const CardSection1 = () => {
   let cardData = useSelector((state) => state.cardItemSlice.cartItems);
 
@@ -36,13 +35,11 @@ const CardSection1 = () => {
     }
   };
 
-  let totalPrice= cardData.reduce((previus,current)=>{
+  let totalPrice = cardData.reduce((previus, current) => {
+    previus += current.price * current.Qont;
+    return previus;
+  }, 0);
 
-    previus += current.price *current.Qont
-    return previus
-  },0)
-
- 
   return (
     <section>
       <div className="container mx-auto">
@@ -51,15 +48,12 @@ const CardSection1 = () => {
 
           <div className="left md:w-[70%]">
             {cardData.length > 0 ? (
-
-              
               <div>
                 <div className="px-2">
                   <div className="w-10/12  md:w-11/12 mx-auto">
                     <ul className="flex  px-3 md:px-0 justify-between">
-                      <li  className=" md:w-[42%]">Product</li>
+                      <li className=" md:w-[42%]">Product</li>
                       <div className="md:w-[56%] flex justify-between">
-                        
                         <li className=" flex items-center"> Price</li>
                         <li className=" flex justify-center text-center items-center px-5">
                           Quantity
@@ -71,9 +65,6 @@ const CardSection1 = () => {
 
                   <div className="w-11/12 mx-auto ">
                     {cardData.map((item, index) => (
-
-                   
-
                       <div
                         key={index}
                         className="flex flex-col md:flex-row justify-between   py-4"
@@ -93,7 +84,9 @@ const CardSection1 = () => {
                             />
                           </div>
                           <div className="flex flex-col gap-1 justify-center w-10/12 mx-auto md:mx-0 ">
-                            <h2 className="text-sm md:text-lg font-josefin font-semibold">{item.title}</h2>
+                            <h2 className="text-sm md:text-lg font-josefin font-semibold">
+                              {item.title}
+                            </h2>
                             <p className="text-sm">Color:Brown</p>
                             <p className="text-sm">Size:XL</p>
                           </div>
@@ -110,7 +103,9 @@ const CardSection1 = () => {
                               >
                                 -
                               </p>
-                              <p className="border-r-2 w-5 md:w-8">{item.Qont}</p>
+                              <p className="border-r-2 w-5 md:w-8">
+                                {item.Qont}
+                              </p>
                               <p
                                 className="w-5 md:w-8"
                                 onClick={() => incrementHandel(index)}
@@ -124,7 +119,6 @@ const CardSection1 = () => {
                           </div>
                         </div>
                       </div>
-
                     ))}
                   </div>
                 </div>
@@ -179,7 +173,7 @@ const CardSection1 = () => {
                   <p>Shiping & taxes Calculated at checkout</p>
                 </div>
                 <button className="bg-green-500 w-full py-2 text-center">
-                  Proceed To Checkout
+                  <Link to="/checkout">Proceed To Checkout</Link>
                 </button>
               </div>
             </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 import { useSelector } from 'react-redux';
@@ -17,8 +17,11 @@ const ChekoutSection1 = () => {
         return previous
     },0)
 
-    
-    
+    const navigate =useNavigate();
+    const orderHandel = ()=>{
+
+      navigate('/orderconfirm');
+    }
     
 
   return (
@@ -30,6 +33,9 @@ const ChekoutSection1 = () => {
         </div>
         <div className="bottom flex flex-col-reverse md:flex-row md:justify-between ">
           <div className="left md:w-[60%]">
+            <form action="#">
+
+
             <div className="px-4">
               <div className="flex justify-between py-4">
                 <h2 className='font-semibold font-josefin text-xm md:text-xl '>Contact Information</h2>
@@ -39,7 +45,7 @@ const ChekoutSection1 = () => {
                 <input
                   className="outline-none border-b-2 w-full py-3"
                   type="email"
-                  placeholder="Email or Mobile Number"
+                  placeholder="Email or Mobile Number" required
                 />
 
                 <div className="flex  gap-8 items-center py-3">
@@ -55,11 +61,12 @@ const ChekoutSection1 = () => {
                     className="w-full border-b-2 py-4  outline-none"
                     type="text"
                     placeholder="First Name (optional)"
+                    required
                   />
                   <input
                     className="w-full border-b-2 py-4 outline-none"
                     type="text"
-                    placeholder="Last Name "
+                    placeholder="Last Name " required
                   />
                 </div>
 
@@ -104,6 +111,8 @@ const ChekoutSection1 = () => {
                 </div>
               </div>
             </div>
+
+            </form>
           </div>
           <div className="right md:w-[38%]">
             <div className='px-5 py-5 md:px-0 md:py-0'>
@@ -150,8 +159,8 @@ const ChekoutSection1 = () => {
                 <input type="checkbox" />
                 <p>Shiping & taxes Calculated at checkout</p>
               </div>
-              <button className="bg-green-500 w-full py-2 text-center">
-                Proceed To Checkout
+              <button onClick={orderHandel} className="bg-green-500 w-full py-2 text-center">
+                Order Confirm
               </button>
             </div>
           </div>

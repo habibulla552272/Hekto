@@ -20,24 +20,24 @@ const Header = () => {
 
   return (
     <section className="bg-heder-bg">
-      <div className="container mx-auto text-white ">
-        <div className="flex flex-col md:flex-row items-center flex-wrap justify-center gap-5 md:justify-between py-2 md:py-5 font-josefin">
-          <div className="text-sm md:text-lg div-1 flex items-center gap-4">
+      <div className="container mx-auto text-white">
+        <div className="flex flex-col md:flex-row items-center flex-wrap justify-center gap-5 md:justify-between py-2 px-3  md:py-5 font-josefin">
+          <div className="text-sm lg:text-lg div-1 flex items-center gap-4">
             <div className="flex items-center gap-2">
               <p className=" flex items-center">
                 <CiMail />
               </p>
-              <p>mhhasanul@gmail.com</p>
+              <p>mdhabiulla146425@gmail.com</p>
             </div>
             <div className="flex items-center gap-2">
               <p className="flex items-center">
                 <FaPhone />
               </p>
-              <p>(12345)67890</p>
+              <p>01707256246</p>
             </div>
           </div>
 
-          <div className="flex gap-3 text-sm md:text-lg">
+          <div className="flex gap-3 text-sm lg:text-lg">
             <div>
               <p className="flex gap-1 items-center">
                 English

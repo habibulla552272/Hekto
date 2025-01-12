@@ -113,7 +113,7 @@ const Featured = () => {
                     <FaSearchDollar />
                   </p>
                 </div>
-                <img className="py-10" src={item.thumbnail} alt="" />
+                <img className="py-10 w-[98%] h-[320px] mx-auto " src={item.thumbnail} alt="" />
                 <div className="absolute group-hover:bottom-2 -bottom-14 duration-700  ease-in-out">
                   <button className="bg-green-400 px-3  py-1 rounded-md">
                     <Link to={`/shop/${item.id}`}>View Details</Link>

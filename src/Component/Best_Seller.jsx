@@ -35,13 +35,13 @@ const Best_Seller = () => {
   };
   // added item in cardslice  end
 
-      // added item in wishlisht  start
-    
-      let wishListHandel = (item) => {
-        dispatch(addtoWishList(item));
-        toast("Item Added  in WishItem !");
-      };
-      // added item in wishlisht  end
+  // added item in wishlisht  start
+
+  let wishListHandel = (item) => {
+    dispatch(addtoWishList(item));
+    toast("Item Added  in WishItem !");
+  };
+  // added item in wishlisht  end
 
   return (
     <section>
@@ -53,7 +53,11 @@ const Best_Seller = () => {
                 <div className="absolute bg-blue-900 group-hover:left-2 left-2 -top-20 group-hover:top-3 duration-700 ease-in-out">
                   <p className="text-xl text-white py-2 px-5">Sale</p>
                 </div>
-                <img src={item.thumbnail} alt="" />
+                <img
+                  className="py-10 w-[98%] h-[320px] mx-auto"
+                  src={item.thumbnail}
+                  alt=""
+                />
                 <div className="absolute flex translate-x-[90%] group-hover:bottom-2 -bottom-14 duration-700  ease-in-out">
                   <button className="bg-green-400 px-3  py-1 rounded-md">
                     <Link to={`/shop/${item.id}`}>View Details</Link>
@@ -75,7 +79,7 @@ const Best_Seller = () => {
                     pauseOnHover
                     theme="light"
                   />
-                  <p onClick={()=>wishListHandel(item)}>
+                  <p onClick={() => wishListHandel(item)}>
                     <CiHeart />
                   </p>
                   <ToastContainer
